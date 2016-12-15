@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import json
 
 app = Flask(__name__)
 app.jinja_env.add_extension('pypugjs.ext.jinja.PyPugJSExtension')
@@ -26,7 +27,7 @@ def register():
 
 @app.route('/linkedInAuth')
 def linked_in_auth():
-    return 'authenticated'
+    return json.dumps(request)
 
 if __name__ == '__main__':
     app.run()
