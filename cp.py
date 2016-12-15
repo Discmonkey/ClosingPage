@@ -17,11 +17,11 @@ def login():
         user_name = request.form['user_name']
         password = request.form['password']
 
+
 @app.route('/register', methods=['POST'])
 def register():
     user_name = request.form['user_name']
     password = request.form['password']
-
 
 
 @app.route('/linkedInAuth')
