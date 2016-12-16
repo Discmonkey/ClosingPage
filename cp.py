@@ -45,7 +45,7 @@ def linked_in_auth():
         payload = {
             'grant_type': 'authorization_code',
             'code': code,
-            'redirect_uri': 'http://localhost:5000/linkedInAuth',
+            'redirect_uri': 'http://closingpage.com/linkedInAuth',
             'client_id': '78c1zfn9rje6f4',
             'client_secret': 'ijSehCeY9DmRIEWw'
         }
