@@ -39,7 +39,8 @@ def register():
 
 @app.route('/linkedInAuth')
 def linked_in_auth():
-    return json.dumps(request)
+    if request.method == 'GET':
+        code = request.values['code']
 
 if __name__ == '__main__':
     app.run()
