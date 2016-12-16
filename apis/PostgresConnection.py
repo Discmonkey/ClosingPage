@@ -1,5 +1,4 @@
 import psycopg2
-import bcrypt
 
 class PostGres:
 
@@ -40,5 +39,4 @@ class PostGres:
 
     @staticmethod
     def hash(password):
-        salt = b'$2b$08$E8CPFWFGm4EnBdrHCeipmu'
-        return bcrypt.hashpw(password.encode('UTF-8'), salt).decode('UTF-8')
+        return password
