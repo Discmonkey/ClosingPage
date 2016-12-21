@@ -1,12 +1,32 @@
 from flask import Flask, render_template, request, redirect
+from flask_login import LoginManager
 from apis.PostgresConnection import PostGres
 import requests
 import json
+from user import User
 
 app = Flask(__name__)
 app.jinja_env.add_extension('pypugjs.ext.jinja.PyPugJSExtension')
 pg = PostGres()
 pg.connect()
+
+login_manager = LoginManager()
+login_manager.init(app)
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    usr = User()
+    valid = usr.load_user(user_id)
+    if valid:
+        return usr
+    else:
+        return None
+
+
+
+
+
 
 
 @app.route('/')
@@ -54,7 +74,6 @@ def linked_in_auth():
 
         token = json.loads(res.content.decode('UTF-8'))['access_token']
 
-        print(token)
 
         return redirect('/')
 

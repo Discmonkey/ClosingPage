@@ -37,6 +37,13 @@ class PostGres:
 
         return False
 
+    def run_query(self, query, args):
+        self.cur.execute(query, args)
+        num_rows = self.cur.rowcount
+        self.conn.commit()
+
+        return num_rows
+
     @staticmethod
     def hash(password):
         return password
