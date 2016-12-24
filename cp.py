@@ -1,17 +1,22 @@
 from flask import Flask, render_template, request, redirect
-from flask_login import LoginManager
+from flask_login import LoginManager, login_required, current_user, login_user, logout_user, session
 from apis.PostgresConnection import PostGres
+from apis.LinkedIn import LinkedIn
 import requests
 import json
-from user import User
+from models.user import User
 
 app = Flask(__name__)
 app.jinja_env.add_extension('pypugjs.ext.jinja.PyPugJSExtension')
+app.secret_key = 'not_so_secret, eh?'
+
+
 pg = PostGres()
 pg.connect()
+li = LinkedIn()
 
 login_manager = LoginManager()
-login_manager.init(app)
+login_manager.init_app(app)
 
 
 @login_manager.user_loader
@@ -23,13 +28,13 @@ def load_user(user_id):
     else:
         return None
 
-
-
-
-
+@login_manager.unauthorized_handler
+def unauthorized_callback():
+    return redirect('/login')
 
 
 @app.route('/')
+@login_required
 def index():
     return render_template('index.pug')
 
@@ -65,7 +70,7 @@ def linked_in_auth():
         payload = {
             'grant_type': 'authorization_code',
             'code': code,
-            'redirect_uri': 'http://closingpage.com/linkedInAuth',
+            'redirect_uri': 'http://localhost:5000/linkedInAuth',
             'client_id': '78c1zfn9rje6f4',
             'client_secret': 'ijSehCeY9DmRIEWw'
         }
@@ -73,9 +78,27 @@ def linked_in_auth():
         res = requests.post('https://www.linkedin.com/oauth/v2/accessToken', data=payload)
 
         token = json.loads(res.content.decode('UTF-8'))['access_token']
-
-
+        info = li.get_profile_info(token)
+        li.insert_profile(info, token)
+        user = User()
+        user.load_linked_in(token)
+        login_user(user)
         return redirect('/')
+
+@app.route('/partials/<partial>')
+def partials(partial):
+    return render_template('partials/' + partial)
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    session.clear()
+    return redirect('/login')
+
+
+@app.context_processor
+def inject_user():
+    return dict(user=current_user)
 
 if __name__ == '__main__':
     app.run()

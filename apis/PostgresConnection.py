@@ -37,6 +37,12 @@ class PostGres:
 
         return False
 
+    def query(self, query, args):
+        self.cur.execute(query, args)
+        rows = self.cur.fetchall()
+        return rows
+
+
     def run_query(self, query, args):
         self.cur.execute(query, args)
         num_rows = self.cur.rowcount

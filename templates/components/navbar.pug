@@ -1,3 +1,20 @@
 nav.navbar.navbar-default
 	div.container-fluid
-
+		div.navbar-header
+			a(href='#')
+				img#logo(src='/static/img/logo.svg')
+		div#navbar.navbar-collapse.collapse
+			ul.nav.navbar-nav.navbar-right
+				li
+					img#profile(src='{{user.picture_url}}')
+				li.dropdown
+					a(href='#', data-toggle='dropdown',
+					role='button', aria-haspopup='true', aria-expanded="false").dropdown-toggle {{user.username}}
+						span.caret
+					ul.dropdown-menu
+						li
+							a(href='/profile') Profile
+						li
+							a(href='/feedback') Feedback
+						li
+							a(href='/logout') Logout
