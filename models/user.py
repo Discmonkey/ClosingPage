@@ -19,7 +19,7 @@ class User:
 
     def load_user(self, user_id):
         row = self.pg.query('SELECT email, username, picture_url, job_title, company '
-                             'FROM users where id=%(id)s', {'id':user_id})
+                             'FROM users where id=%(id)s', {'id': user_id})
 
         if not row:
             return False
@@ -27,7 +27,7 @@ class User:
         self.is_authenticated = self.is_active = True
         self.email = row[0][0]
         self.username = row[0][1]
-        self.picture_url = row[0][2]
+        self.picture_url = row[0][2] if row[0][2] else '/static/img/defaultIcon.png'
         self.job_title = row[0][3]
         self.company = row[0][4]
         self.id = user_id
@@ -36,6 +36,18 @@ class User:
     def load_linked_in(self, token):
         user_id = self.pg.query('SELECT id FROm users where linkedin_token=%(token)s', {'token':token})[0]
         self.load_user(user_id)
+
+    def load_username_password(self, username, password):
+        row = self.pg.query('SELECT id FROM users where username=%(username)s and password=%(password)s', {
+            'username': username,
+            'password': password
+        })
+
+        if row:
+            user_id = row[0]
+            return self.load_user(user_id)
+        else:
+            return False
 
     def get_id(self):
         return self.id

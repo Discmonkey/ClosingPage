@@ -7,10 +7,14 @@ body
 
     div.login-page
         div.form
+            if get_flashed_messages(with_categories = True)
+                for category, message in get_flashed_messages(with_categories=True)
+                    div.message(class="message-{{category}}")
+                        h3 {{message}}
             div#logo
                 img.logo(src='static/img/logo.svg')
             div#linkedin
-                a(href='https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=78c1zfn9rje6f4&redirect_uri=http://closingpage.com/linkedInAuth&state=asdf&scope=r_basicprofile,r_emailaddress')
+                a(href='https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=78c1zfn9rje6f4&redirect_uri=http://localhost:5000/linkedInAuth&state=asdf&scope=r_basicprofile,r_emailaddress')
                     img(src='static/img/linkedin.png')
             form(action='/register', method='POST').register-form
                 input(type="text", placeholder="name", name='username', required)

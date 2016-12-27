@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, flash
 from flask_login import LoginManager, login_required, current_user, login_user, logout_user
 from apis.PostgresConnection import PostGres
 from apis.LinkedIn import LinkedIn
@@ -46,8 +46,14 @@ def login():
     elif request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        if pg.login_user(username, password):
+        user = User()
+        if user.load_username_password(username, password):
+            login_user(user)
+            flash('Login Success', 'success')
             return redirect('/')
+        else:
+            flash('Login Failed', 'error')
+            return redirect('/login')
 
 
 @app.route('/register', methods=['POST'])
@@ -57,7 +63,10 @@ def register():
     email = request.form['email']
 
     if username and password and email:
-        if pg.register_user(username, email, password):
+        user_id = pg.register_user(username, email, password)
+        if user_id:
+            user = User()
+            user.load_user(user_id)
             return redirect('/')
         else:
             return redirect('/login')
@@ -70,7 +79,7 @@ def linked_in_auth():
         payload = {
             'grant_type': 'authorization_code',
             'code': code,
-            'redirect_uri': 'http://closingpage.com/linkedInAuth',
+            'redirect_uri': 'http://localhost:5000/linkedInAuth',
             'client_id': '78c1zfn9rje6f4',
             'client_secret': 'ijSehCeY9DmRIEWw'
         }
@@ -85,9 +94,16 @@ def linked_in_auth():
         login_user(user)
         return redirect('/')
 
+
 @app.route('/partials/<partial>')
 def partials(partial):
     return render_template('partials/' + partial)
+
+
+@app.route('/partials/<partial_dir>/<partial>')
+def partials_dir(partial_dir, partial):
+    return render_template('partials/' + partial_dir + '/' + partial)
+
 
 @app.route('/logout')
 def logout():
@@ -95,6 +111,11 @@ def logout():
     session.clear()
     return redirect('/login')
 
+
+@app.route('/tests/<component>')
+def directive_test_suite(component):
+    print(request.host_url)
+    return render_template('tests/test-component.pug', test_component=component)
 
 @app.context_processor
 def inject_user():

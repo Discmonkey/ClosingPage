@@ -19,10 +19,13 @@ class PostGres:
     def register_user(self, username, email, password):
         hashed = self.hash(password)
         try:
-            self.cur.execute("INSERT INTO users (username, email, password) VALUES (%(username)s, %(email)s, %(pass)s)",
+            self.cur.execute("INSERT INTO users (username, email, password) VALUES (%(username)s, %(email)s, %(pass)s) "
+                             "RETURNING id",
                              {'email': email, 'pass': hashed, 'username': username})
             self.conn.commit()
-            return True
+
+            return self.cur.fetchall()[0][0]
+
         except Exception as e:
             print(e)
             return False
@@ -53,3 +56,10 @@ class PostGres:
     @staticmethod
     def hash(password):
         return password
+
+
+if __name__ == '__main__':
+    pg = PostGres()
+    pg.connect()
+    u_id = pg.register_user('Test2', 'test2', 'test3')
+    print(u_id)

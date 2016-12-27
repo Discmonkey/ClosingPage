@@ -1,0 +1,10 @@
+div.form-component
+	div.presentation.text-center
+		img.upload(ng-show="$ctrl.showForm",
+		src="/static/img/phase-one/upload.svg",
+		ng-click="$ctrl.showModal()")
+		div.mini-modal.text-center.jumbotron(ng-show="$ctrl.showUploadForm")
+			h5 Cool, lets go grab your files
+			label.myLabel
+				input(type="file",onchange="angular.element(this).scope().uploadFile(this.files)")
+

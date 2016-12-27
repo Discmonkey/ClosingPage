@@ -1,0 +1,42 @@
+div.preview
+	div.row
+		div.col-md-12
+			div#cover-photo.document
+	div.row.text-center
+		h2 Title
+	div.row
+		div.col-md-8.col-md-offset-2
+			p Lorem Ipsum has been the industry standard ever since the 500s when an unknown printer took a galley of type and scrambled it to Lorem Ipsum has been the industry standard
+	div.row
+		div.col-md-8.col-md-offset-2.large-presentation
+			div.document.presentation.text-center
+				img(src='/static/img/phase-one/upload.svg').upload
+
+	div.row.text-center
+		p Lorem Ipsum and such and such
+	div.row
+		div.col-md-4.col-md-offset-2.medium-presentation
+			div.row
+				div.document.presentation.text-center
+					img(src='/static/img/phase-one/upload.svg').upload
+			div.row.text-center
+				p Lorem ipsum and such and such
+		div.col-md-4.medium-presentation
+			div.row
+				div.document.presentation.text-center
+					img(src='/static/img/phase-one/upload.svg').upload
+			div.row.text-center
+				p Lorem ipsum and such and such
+
+	div.row
+		div.jumbotron.text-center
+			h6 "This is an awesome quote -- made by awesome people"
+	div.row
+		div.col-md-8.col-md-offset-2
+			div.preview-footer
+				img.sign.pull-left(src='{{user.picture_url}}')
+				div.byline.pull-left
+					span.row {{user.username}}
+					span.row {{user.job_title}}
+				img.contact.pull-right(src='/static/img/phase-one/CTA.svg')
+

@@ -1,0 +1,28 @@
+div.row#create
+    div.template-controls.col-xs-3
+        div.enclosure
+            div.row.align-center
+                span.fa.fa-arrow-left
+                span Home
+            div.row Pick your Template
+            div.vertical-space
+            div.row
+                a(ui-sref="template-one", ng-mouseover='preview(true)')
+                    img(ng-show='!displayTempOne',src='static/img/phase-one/template1.svg')
+                    img(ng-show='displayTempOne',src='static/img/phase-one/template1-active.svg')
+            div.row
+                div.pull-left Template 1
+            div.vertical-space
+            div.row
+                a(ui-sref="template-two", ng-mouseover='preview(false)')
+                    img(ng-show='displayTempOne', src='static/img/phase-one/template2.svg')
+                    img(ng-show='!displayTempOne', src='static/img/phase-one/template2-active.svg')
+            div.row
+                div.pull-left Template 2
+            div.row.vertical-space
+            div.row Looking for more template options?
+            div.row
+                a(href='/contact') Send us your ideas :)
+    div.col-xs-9.no-padding-left
+        div.templates
+            div(ui-view='', autoscroll='false')

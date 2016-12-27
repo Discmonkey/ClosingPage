@@ -8,6 +8,20 @@ class LinkedIn:
         self.pg = pg()
         self.pg.connect()
 
+    @staticmethod
+    def return_default_values():
+        return {
+            'email': 'email',
+            'username': 'username',
+            'first_name': 'first',
+            'last_name': 'last',
+            'picture_url': '/static/img/defaultIcon.png',
+            'job_title': 'awesome',
+            'company': 'company',
+            'id': '',
+            'token': ''
+        }
+
     def insert_token(self, token):
         query = """
             INSERT INTO users (linkedin_token) VALUES (%(token)s)
@@ -17,17 +31,13 @@ class LinkedIn:
 
     def insert_profile(self, user_obj, token):
 
-        insert_obj = {
-            'email': user_obj['emailAddress'],
-            'username': user_obj['firstName'],
-            'first_name': user_obj['firstName'],
-            'last_name': user_obj['lastName'],
-            'picture_url': user_obj['pictureUrl'],
-            'job_title': user_obj['positions']['values'][0]['title'],
-            'company': user_obj['positions']['values'][0]['company']['name'],
-            'id': user_obj['id'],
-            'token': token
-        }
+        insert_obj = self.return_default_values()
+
+        for key in insert_obj.keys():
+            try:
+                insert_obj[key] = user_obj[key]
+            except KeyError:
+                pass
 
         user_id = self.pg.run_query("""
             WITH upsert AS (UPDATE users

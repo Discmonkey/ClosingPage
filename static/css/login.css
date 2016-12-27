@@ -113,3 +113,21 @@ img.logo {
 img {
     padding-bottom: 10px;
 }
+
+div.message {
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 10px !important;
+}
+
+div.message-error {
+    color: #8a6d3b !important;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+
+div.message-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
