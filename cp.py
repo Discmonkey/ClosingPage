@@ -67,6 +67,7 @@ def register():
         if user_id:
             user = User()
             user.load_user(user_id)
+            login_user(user)
             return redirect('/')
         else:
             return redirect('/login')
