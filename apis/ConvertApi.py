@@ -4,7 +4,7 @@ import zipfile
 
 class ConvertApi:
 
-    def convert_powerpoint(self, file_path_from, file_path_to):
+    def convert_powerpoint(self, file_stream, file_path_to):
         request_url = 'https://do.convertapi.com/PowerPoint2Image'
 
         form_data = {
@@ -16,10 +16,8 @@ class ConvertApi:
             'Timeout': 10
         }
 
-        file = open('/Users/maxg/PycharmProjects/ClosingPage/static/img/phase-one/test.ppt', 'rb')
-
         filename = '/Users/maxg/PycharmProjects/ClosingPage/static/img/phase-one/test.zip'
-        files = {'file': file}
+        files = {'file': file_stream}
 
         res = requests.post(request_url, data=form_data, files=files)
         print(res.status_code)

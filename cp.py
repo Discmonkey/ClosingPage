@@ -2,9 +2,10 @@ from flask import Flask, render_template, request, redirect, session, flash
 from flask_login import LoginManager, login_required, current_user, login_user, logout_user
 from apis.PostgresConnection import PostGres
 from apis.LinkedIn import LinkedIn
+from apis.ConvertApi import ConvertApi
 import requests
 import json
-from models.user import User
+from controllers.user import User
 
 app = Flask(__name__)
 app.jinja_env.add_extension('pypugjs.ext.jinja.PyPugJSExtension')
@@ -14,6 +15,7 @@ app.secret_key = 'not_so_secret, eh?'
 pg = PostGres()
 pg.connect()
 li = LinkedIn()
+ca = ConvertApi()
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -80,7 +82,7 @@ def linked_in_auth():
         payload = {
             'grant_type': 'authorization_code',
             'code': code,
-            'redirect_uri': 'http://closingpage.com/linkedInAuth',
+            'redirect_uri': 'http://localhost:5000/linkedInAuth',
             'client_id': '78c1zfn9rje6f4',
             'client_secret': 'ijSehCeY9DmRIEWw'
         }
@@ -123,6 +125,14 @@ def directive_test_suite(component):
 @login_required
 def contact():
     return render_template('views/contact.pug')
+
+
+@app.route('/upload',methods=['POST'])
+@login_required
+def upload():
+
+    user_id = User.get_id()
+
 
 @app.context_processor
 def inject_user():
