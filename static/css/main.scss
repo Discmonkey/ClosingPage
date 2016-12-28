@@ -1,7 +1,7 @@
 $dark-background: #1d1d1d;
 $closing-page-green: #4caf50;
 $lighter-background: #272727;
-$grey: #4f4f4f;
+$grey: #737373;
 $light-grey: #d2d2d2;
 //general classes
 
@@ -10,10 +10,15 @@ body {
 }
 .enclosure {
   padding: 20px;
+  overflow-y: auto;
 }
 
 .no-padding-left {
 	padding-left: 0 !important;
+}
+
+.padding-right {
+	padding-right: 5px;
 }
 
 .row {
@@ -96,6 +101,23 @@ nav {
 	#cover-photo {
 		height: 150px;
 		width: 100%;
+		div {
+			position: relative;
+		}
+		label {
+			padding: 10px;
+			position: absolute;
+			right: 30;
+			top: 100px;
+
+			input {
+				display: none;
+			}
+
+			&:hover {
+				box-shadow: 0 0 3px 3px $light-grey;
+			}
+		}
 	}
 
 	.large-presentation {
@@ -167,7 +189,7 @@ nav {
 }
 
 .form-component {
-	background-color: #f0f0f0;
+	background-color: #d6d6d6;
 	.presentation {
 		height: 100%;
 		width: 100%;
@@ -185,40 +207,38 @@ nav {
 
 
 	.mini-modal {
-		width: 90%;
-		height: 90%;
+		width: 70%;
+		height: 70%;
+		min-height: 150px;
 		position: absolute;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
 		border-radius: 2px;
-		background-color: #ebebeb;
-		border-top: 2px solid $closing-page-green;
-
-		h5 {
-			top: 15%;
+		background-color: #f9f9f9;
+		border-top: 4px solid $closing-page-green;
+		padding: 15px;
+		h4 {
+			color: grey;
+		}
+		input {
+			display: none;
 		}
 
-		.myLabel {
-			border: 2px solid #AAA;
-			border-radius: 4px;
-			padding: 2px 5px;
-			margin: 2px;
-			background: #DDD;
-			display: inline-block;
+		label {
+			padding: 10px;
+
+			&:hover {
+				box-shadow: 0 0 3px 3px $light-grey;
+			}
 		}
-		.myLabel:hover {
-			background: #CCC;
-		}
-		.myLabel:active {
-			background: #CCF;
-		}
-		.myLabel :invalid + span {
-			color: #A44;
-		}
-		.myLabel :valid + span {
-			color: #4A4;
-		}
+
+	}
+
+	i.fa-spinner {
+		margin-top: 20%;
+		color: white;
+		font-size: 3em;
 	}
 }
 

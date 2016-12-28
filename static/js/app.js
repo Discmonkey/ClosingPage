@@ -1,6 +1,9 @@
 var ClosingPage = angular.module('ClosingPage', ['ui.router']);
 
 ClosingPage.controller('TemplatePickerCtrl', TemplatePickerCtrl)
+.component('fileUpload', FileUpload)
+.controller('TemplateOneCtrl', TemplateOneCtrl)
+.controller('TemplateTwoCtrl', TemplateTwoCtrl)
 .config(function($stateProvider, $urlRouterProvider, $interpolateProvider) {
 
     $interpolateProvider.startSymbol('{(').endSymbol(')}');
@@ -27,11 +30,13 @@ ClosingPage.controller('TemplatePickerCtrl', TemplatePickerCtrl)
 
         .state('template-one', {
             url: '/template-one',
-            templateUrl: '/partials/template-one.pug'
+            templateUrl: '/partials/template-one.pug',
+            controller: 'TemplateOneCtrl'
         })
 
         .state('template-two', {
             url: '/template-two',
-            templateUrl: 'partials/template-two.pug'
+            templateUrl: 'partials/template-two.pug',
+            controller: 'TemplateTwoCtrl'
         });
 });

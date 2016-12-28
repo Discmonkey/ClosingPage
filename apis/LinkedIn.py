@@ -33,11 +33,34 @@ class LinkedIn:
 
         insert_obj = self.return_default_values()
 
-        for key in insert_obj.keys():
-            try:
-                insert_obj[key] = user_obj[key]
-            except KeyError:
-                pass
+        if 'emailAddress' in user_obj:
+            insert_obj['email'] = user_obj['emailAddress']
+
+        if 'firstName' in user_obj:
+            insert_obj['first_name'] = user_obj['firstName']
+            insert_obj['username'] = user_obj['firstName']
+
+        if 'lastName' in user_obj:
+            insert_obj['last_name'] = user_obj['lastName']
+
+        if 'positions' in user_obj:
+            if 'values' in user_obj['positions']:
+                if len(user_obj['positions']['values']) > 0:
+                    pos = user_obj['positions']['values'][0]
+
+                    if 'title' in pos:
+                        insert_obj['job_title'] = pos['title']
+
+                    if 'company' in pos and 'name' in pos['company']:
+                        insert_obj['company'] = pos['company']['name']
+
+        if 'pictureUrl' in user_obj:
+            insert_obj['picture_url'] = user_obj['pictureUrl']
+
+        if 'id' in user_obj:
+            insert_obj['id'] = user_obj['id']
+
+        insert_obj['token'] = token
 
         user_id = self.pg.run_query("""
             WITH upsert AS (UPDATE users

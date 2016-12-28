@@ -2,21 +2,7 @@
  * Created by maxg on 12/26/16.
  */
 var FileUpload = {
-    templateUrl: [
-        '<div class="form-component">',
-            '<div class="presentation text-center">',
-                '<img class="upload", ng-show="$ctrl.showForm", ' +
-                'src="/static/img/phase-one/upload.svg", ng-click="$ctrl.showModal()">',
-                '<div class="mini-modal text-center jumbotron", ng-show="$ctrl.showUploadForm">',
-                    '<h5> Cool, lets go grab your files. </h5>',
-                    '<label class="myLabel">',
-                        '<button class="btn btn-success"> Upload </button>',
-                        '<span> Upload </span>',
-                    '</label>',
-                '</div>',
-            '</div>',
-        '</div>'
-    ].join(''),
+    templateUrl: '/partials/file-upload.pug',
     controller: function($http) {
         var self = this;
         this.showForm = true;
@@ -26,6 +12,8 @@ var FileUpload = {
         this.showGIF = false;
         this.showPDF = false;
 
+
+        this.action = 'Power Point';
         this.dataSources = {
             pptData: [],
             gifSource: '',
@@ -35,7 +23,12 @@ var FileUpload = {
         this.showModal = function() {
             self.showForm = false;
             self.showUploadForm = true;
-        }
+        };
+
+        this.exitModal = function() {
+            self.showUploadForm = false;
+            self.showForm = true;
+        };
 
         this.uploadFile = function(files) {
             var fd = new FormData();

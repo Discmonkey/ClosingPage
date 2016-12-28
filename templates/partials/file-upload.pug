@@ -1,10 +1,21 @@
 div.form-component
 	div.presentation.text-center
-		img.upload(ng-show="$ctrl.showForm",
+		img(ng-show="$ctrl.showForm",
 		src="/static/img/phase-one/upload.svg",
 		ng-click="$ctrl.showModal()")
-		div.mini-modal.text-center.jumbotron(ng-show="$ctrl.showUploadForm")
-			h5 Cool, lets go grab your files
-			label.myLabel
-				input(type="file",onchange="angular.element(this).scope().uploadFile(this.files)")
+		div.mini-modal.text-center(ng-show="$ctrl.showUploadForm")
+			div.row
+				div.col-md-1.col-md-offset-8
+					button.btn.btn-danger(ng-click='$ctrl.exitModal()')
+						span.fa.fa-remove
+			div.spacer
+				div.row.text-center
+					p Cool, let's go grab your files.
+			div.row
+				label.label.label-primary
+					input(type="file",onchange="angular.element(this).scope().uploadFile(this.files)")
+					span.padding-right Upload From Computer
+					span.fa.fa-file.margin-r
 
+		div.loading(ng-show='$ctrl.showLoading').text-center
+			i.fa.fa-spinner.fa-spin

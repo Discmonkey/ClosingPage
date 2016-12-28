@@ -2,10 +2,14 @@ body {
   background-color: #4caf50; }
 
 .enclosure {
-  padding: 20px; }
+  padding: 20px;
+  overflow-y: auto; }
 
 .no-padding-left {
   padding-left: 0 !important; }
+
+.padding-right {
+  padding-right: 5px; }
 
 .row {
   margin-bottom: 10px; }
@@ -67,6 +71,17 @@ nav {
 .preview #cover-photo {
   height: 150px;
   width: 100%; }
+  .preview #cover-photo div {
+    position: relative; }
+  .preview #cover-photo label {
+    padding: 10px;
+    position: absolute;
+    right: 30;
+    top: 100px; }
+    .preview #cover-photo label input {
+      display: none; }
+    .preview #cover-photo label:hover {
+      box-shadow: 0 0 3px 3px #d2d2d2; }
 .preview .large-presentation .presentation {
   height: 200px;
   width: 100%; }
@@ -105,7 +120,7 @@ nav {
     margin-top: 5px; }
 
 .form-component {
-  background-color: #f0f0f0; }
+  background-color: #d6d6d6; }
   .form-component .presentation {
     height: 100%;
     width: 100%;
@@ -119,31 +134,28 @@ nav {
     height: 32%;
     cursor: pointer; }
   .form-component .mini-modal {
-    width: 90%;
-    height: 90%;
+    width: 70%;
+    height: 70%;
+    min-height: 150px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 2px;
-    background-color: #ebebeb;
-    border-top: 2px solid #4caf50; }
-    .form-component .mini-modal h5 {
-      top: 15%; }
-    .form-component .mini-modal .myLabel {
-      border: 2px solid #AAA;
-      border-radius: 4px;
-      padding: 2px 5px;
-      margin: 2px;
-      background: #DDD;
-      display: inline-block; }
-    .form-component .mini-modal .myLabel:hover {
-      background: #CCC; }
-    .form-component .mini-modal .myLabel:active {
-      background: #CCF; }
-    .form-component .mini-modal .myLabel :invalid + span {
-      color: #A44; }
-    .form-component .mini-modal .myLabel :valid + span {
-      color: #4A4; }
+    background-color: #f9f9f9;
+    border-top: 4px solid #4caf50;
+    padding: 15px; }
+    .form-component .mini-modal h4 {
+      color: grey; }
+    .form-component .mini-modal input {
+      display: none; }
+    .form-component .mini-modal label {
+      padding: 10px; }
+      .form-component .mini-modal label:hover {
+        box-shadow: 0 0 3px 3px #d2d2d2; }
+  .form-component i.fa-spinner {
+    margin-top: 20%;
+    color: white;
+    font-size: 3em; }
 
 /*# sourceMappingURL=main.css.map */
