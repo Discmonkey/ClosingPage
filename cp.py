@@ -117,6 +117,12 @@ def directive_test_suite(component):
     print(request.host_url)
     return render_template('tests/test-component.pug', test_component=component)
 
+
+@app.route('/contact')
+@login_required
+def contact():
+    return render_template('views/contact.pug')
+
 @app.context_processor
 def inject_user():
     return dict(user=current_user)
