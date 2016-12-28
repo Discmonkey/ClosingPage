@@ -15,5 +15,15 @@ function TemplateTwoCtrl($scope) {
 
     $scope.mainQuote = 'Place your message here';
 
+    $scope.inputs = {
+        'Template Title': 'Title',
+        'Main Description': 'Pitch',
+        'Left Display Description': 'Description',
+        'Right Display Description': 'Description',
+        'Left Small Description': 'Description',
+        'Middle Small Description': 'Description',
+        'Right Small Description': 'Description',
+        'Quote': 'Awesome Quote'
+    };
 
 }

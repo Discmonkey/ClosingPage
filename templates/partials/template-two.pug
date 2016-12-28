@@ -1,3 +1,74 @@
 div.row#template-two
-    div.col-md-4 Left Column
-    div.col-md-8 Template Two
+	div.col-md-3.template-controls.scroll
+		div.enclosure
+			div.row.align-center
+				a(ui-sref="choose-template.preview-two")
+					span.fa.fa-arrow-left.padding-right
+					span Choose Layout
+			div.row(ng-repeat="(title, value) in inputs")
+				div.form-group
+					label {(title)}
+					input.form-control(ng-model="inputs[title]")
+	div.col-xs-9.no-padding-left
+		div.templates
+			div.preview
+				div.row
+					div.col-md-12
+						div#cover-photo.document
+							div
+								label.label.label-primary
+									input(type="file",onchange="angular.element(this).scope().uploadFile(this.files)")
+									span.padding-right Upload From Computer
+									span.fa.fa-file
+				div.row.text-center
+					h2 {(inputs['Template Title'])}
+				div.row
+					div.col-md-8.col-md-offset-2.text-center
+						p {(inputs['Main Description'])}
+				div.row
+					div.col-md-4.medium-presentation.col-md-offset-2
+						div.row
+							div.document.presentation.text-center
+								file-upload
+						div.row.text-center
+							p {(inputs['Left Display Description'])}
+					div.col-md-4.medium-presentation
+						div.row
+							div.document.presentation.text-center
+								file-upload
+						div.row.text-center
+							p {(inputs['Right Display Description'])}
+				div.row
+					div.col-md-8.col-md-offset-2
+						div.col-md-4.mini-presentation
+							div.row
+								div.document.presentation.text-center
+									file-upload
+							div.row.text-center
+								p {(inputs['Left Small Description'])}
+						div.col-md-4.mini-presentation
+							div.row
+								div.document.presentation.text-center
+									file-upload
+							div.row.text-center
+								p {(inputs['Middle Small Description'])}
+						div.col-md-4.mini-presentation
+							div.row
+								div.document.presentation.text-center
+									file-upload
+							div.row.text-center
+								p {(inputs['Right Small Description'])}
+
+				div.row
+					div.jumbotron.text-center
+						h6 {(inputs['Quote'])}
+				div.row
+					div.col-md-8.col-md-offset-2
+						div.preview-footer
+							img.sign.pull-left(src='{{user.picture_url}}')
+							div.byline.pull-left
+								span.row {{user.username}}
+								span.row {{user.job_title}}
+							img.contact.pull-right(src='/static/img/phase-one/CTA.svg')
+
+		
