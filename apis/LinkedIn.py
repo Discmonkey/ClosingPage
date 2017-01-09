@@ -1,6 +1,9 @@
-import requests
-from apis.PostgresConnection import PostGres as pg
 import json
+
+import requests
+
+from models.PostgresConnection import PostGres as pg
+
 
 class LinkedIn:
 

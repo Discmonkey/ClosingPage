@@ -1,6 +1,12 @@
 body {
   background-color: #4caf50; }
 
+.cp-green {
+  background-color: #4caf50; }
+
+.max-width {
+  width: 100%; }
+
 .enclosure {
   padding: 20px; }
 
@@ -27,11 +33,19 @@ img.profile {
 
 nav {
   background-color: #1d1d1d !important; }
+  nav img#publish {
+    border-right: 2px solid #d2d2d2;
+    margin-right: 12px; }
+  nav img.btn {
+    height: 40px;
+    margin-top: 10px; }
   nav #logo {
     height: 40px;
+    width: 300px;
     margin-top: 12px;
     margin-bottom: 12px;
-    margin-left: 20px; }
+    margin-left: 20px;
+    padding-right: 70px; }
   nav a {
     display: inline-block; }
   nav div.navbar-header {
@@ -83,6 +97,25 @@ nav {
     .preview #cover-photo label input {
       display: none; }
     .preview #cover-photo label:hover {
+      box-shadow: 0 0 3px 3px #d2d2d2; }
+.preview #logo {
+  height: 100px;
+  width: 100px;
+  margin: auto; }
+  .preview #logo div {
+    position: relative; }
+  .preview #logo label {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 25px;
+    width: 70px; }
+    .preview #logo label input {
+      display: none; }
+    .preview #logo label:hover {
       box-shadow: 0 0 3px 3px #d2d2d2; }
 .preview .large-presentation .presentation {
   height: 200px;
@@ -160,5 +193,27 @@ nav {
     margin-top: 20%;
     color: white;
     font-size: 3em; }
+
+.powerpoint {
+  position: relative;
+  height: 100%;
+  width: 100%; }
+  .powerpoint img {
+    width: 100%;
+    height: 100%;
+    margin: auto; }
+  .powerpoint .arrow {
+    height: 10%;
+    position: absolute;
+    top: 45%;
+    width: 5%;
+    text-align: center;
+    vertical-align: middle; }
+    .powerpoint .arrow i {
+      display: inline-block; }
+  .powerpoint .left {
+    left: 0; }
+  .powerpoint .right {
+    right: 0; }
 
 /*# sourceMappingURL=main.css.map */

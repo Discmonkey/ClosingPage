@@ -1,9 +1,23 @@
-var ClosingPage = angular.module('ClosingPage', ['ui.router']);
+var ClosingPage = angular.module('ClosingPage', ['ui.router','ui.bootstrap']);
 
 ClosingPage.controller('TemplatePickerCtrl', TemplatePickerCtrl)
 .component('fileUpload', FileUpload)
+.component('pdfDisplay', PDFDisplay)
+.component('pptDisplay', PPTDisplay)
+.component('gifDisplay', GIFDisplay)
 .controller('TemplateOneCtrl', TemplateOneCtrl)
 .controller('TemplateTwoCtrl', TemplateTwoCtrl)
+.directive('backImg', function() {
+    return function (scope, element, attrs) {
+        attrs.$observe('backImg', function (value) {
+            element.css({
+                'background-image': 'url(' + value + ')',
+                'background-size': 'cover'
+            });
+        });
+    }
+})
+.service('Template', TemplateService)
 .config(function($stateProvider, $urlRouterProvider, $interpolateProvider) {
 
     $interpolateProvider.startSymbol('{(').endSymbol(')}');

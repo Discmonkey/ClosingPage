@@ -1,11 +1,21 @@
+import json
+import os
+
+import requests
 from flask import Flask, render_template, request, redirect, session, flash
 from flask_login import LoginManager, login_required, current_user, login_user, logout_user
-from apis.PostgresConnection import PostGres
-from apis.LinkedIn import LinkedIn
+from werkzeug.utils import secure_filename
+
 from apis.ConvertApi import ConvertApi
-import requests
-import json
+from apis.LinkedIn import LinkedIn
+from controllers.File import FileController
 from controllers.user import User
+from controllers.Template import Template
+from models.PostgresConnection import PostGres
+
+CURRENT_DIRECTORY = os.path.dirname(os.path.realpath(__file__))
+ALLOWED_EXTENSIONS = {'ppt', 'gif', 'pdf', 'jpg', 'png'}
+
 
 app = Flask(__name__)
 app.jinja_env.add_extension('pypugjs.ext.jinja.PyPugJSExtension')
@@ -16,6 +26,8 @@ pg = PostGres()
 pg.connect()
 li = LinkedIn()
 ca = ConvertApi()
+up = FileController(ALLOWED_EXTENSIONS)
+temp = Template()
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -26,6 +38,9 @@ def load_user(user_id):
     usr = User()
     valid = usr.load_user(user_id)
     if valid:
+        user_id = usr.get_id()
+        file_path = CURRENT_DIRECTORY + '/static/files/user_{}'.format(user_id)
+        FileController.create_directory(file_path)
         return usr
     else:
         return None
@@ -117,7 +132,6 @@ def logout():
 
 @app.route('/tests/<component>')
 def directive_test_suite(component):
-    print(request.host_url)
     return render_template('tests/test-component.pug', test_component=component)
 
 
@@ -127,11 +141,90 @@ def contact():
     return render_template('views/contact.pug')
 
 
-@app.route('/upload',methods=['POST'])
+@app.route('/upload', methods=['POST'])
 @login_required
 def upload():
+    if 'file' not in request.files:
+        flash('No file part', 'warning')
+        return '[]', 400, {'Content-Type': 'application/json'}
 
-    user_id = User.get_id()
+    file = request.files['file']
+    filename = secure_filename(file.filename)
+    if filename == '':
+        flash('No file selected', 'warning')
+        return '[]', 400, {'Content-Type': 'application/json'}
+
+    if not up.is_file_allowed(filename):
+        flash('Please upload one of .ppt, .pdf, or .gif files', 'warning')
+        return '[]', 415, {'Content-Type': 'application/json'}
+
+    file_ext = up.get_file_ext(filename)
+    file_dir = 'static/files/user_{}/'.format(current_user.get_id())
+
+    if file_ext in ['pdf', 'ppt', 'gif', 'jpg', 'png']:
+
+        rand_file_name = up.create_file_name(filename)
+        resource_path = file_dir + rand_file_name
+        save_path = os.path.join(CURRENT_DIRECTORY, resource_path)
+        file.save(save_path)
+
+        if file_ext != 'ppt':
+
+            json_res = {
+                'display': file_ext,
+                'source': resource_path
+            }
+            return json.dumps(json_res), 200
+
+        else:
+            # img_paths = ca.convert_and_extract(rand_file_name, file_dir, CURRENT_DIRECTORY)
+            img_paths = ['static/files/user_11/test-RRO/file-page1.jpg',
+                         'static/files/user_11/test-RRO/file-page2.jpg',
+                         'static/files/user_11/test-RRO/file-page3.jpg']
+            json_res = {
+                'display': 'ppt',
+                'source': img_paths
+            }
+
+            return json.dumps(json_res), 200
+
+
+@app.route('/removeFile', methods=['POST'])
+@login_required
+def remove():
+    filename = secure_filename(request.json['filename'])
+    user_id = current_user.get_id()
+    file_path = 'static/files/user_{}/'.format(user_id)
+    up.remove_file(file_path)
+
+
+@app.route('/save-template/<num>', methods=['POST'])
+@login_required
+def save_template(num):
+    template = request.data
+    template = json.loads(template.decode('utf-8'))
+    user_id = current_user.get_id()
+    temp.save_template(template, num, user_id)
+    return 'success'
+
+
+@app.route('/publish-template/<num>', methods=['POST'])
+@login_required
+def publish_template(num):
+    template = json.loads(request.data.decode('utf-8'))
+    user_id = current_user.get_id()
+    temp.save_template(template, num, user_id)
+    return redirect('/login')
+
+
+@app.route('/test')
+def test():
+    return render_template('tests/test-page.pug')
+
+
+@app.route('/profile')
+def profile():
+    return render_template()
 
 
 @app.context_processor

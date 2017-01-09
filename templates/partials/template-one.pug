@@ -9,26 +9,37 @@ div.row#template-one
 				div.form-group
 					label {(title)}
 					input.form-control(ng-model="inputs[title]")
+			div.row
+				button.btn.max-width.cp-green(ng-click="save()") Save
 	div.col-xs-9.no-padding-left
 		div.templates
 			div.preview
 				div.row
 					div.col-md-12
-						div#cover-photo.document
+						div#cover-photo.document(back-img="{(uploads.coverImage.source)}")
 							div
 								label.label.label-primary
-									input(type="file",onchange="angular.element(this).scope().uploadFile(this.files)")
+									input(type="file",
+									onchange="angular.element(this).scope().uploadBackground(this.files,'coverImage')")
 									span.padding-right Upload From Computer
 									span.fa.fa-file
+				div.row
+					div.col-md-5.col-md-offset-2
+						h2 Hey, {(inputs['Subject'])}
+						p {(inputs['Main Description'])}
+					div.col-md-3.text-center
+						div#logo.document(back-img="{(uploads.logo.source)}")
+							label.label.label-primary
+								input(type="file",
+								onchange = "angular.element(this).scope().uploadBackground(this.files, 'logo')")
+								span.padding-right logo
+								span.fa.fa-file
 				div.row.text-center
 					h2 {(inputs['Template Title'])}
 				div.row
-					div.col-md-8.col-md-offset-2.text-center
-						p {(inputs['Main Description'])}
-				div.row
 					div.col-md-8.col-md-offset-2.large-presentation
 						div.document.presentation.text-center
-							file-upload
+							file-upload(state="uploads.lrgDisplay")
 				div.row
 					div.col-md-8.text-center.col-md-offset-2
 						p {(inputs['Center Display Description'])}
@@ -36,13 +47,13 @@ div.row#template-one
 					div.col-md-4.col-md-offset-2.medium-presentation
 						div.row
 							div.document.presentation.text-center
-								file-upload
+								file-upload(state="uploads.medDisplayLeft")
 						div.row.text-center
 							p {(inputs['Left Display Description'])}
 					div.col-md-4.medium-presentation
 						div.row
 							div.document.presentation.text-center
-								file-upload
+								file-upload(state="uploads.medDisplayRight")
 						div.row.text-center
 							p {(inputs['Right Display Description'])}
 
