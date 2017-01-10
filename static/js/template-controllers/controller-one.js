@@ -1,5 +1,4 @@
 function TemplateOneCtrl($scope, $http, Template) {
-
     var self = this;
     this.data = {
         uploads: {
@@ -44,7 +43,7 @@ function TemplateOneCtrl($scope, $http, Template) {
     };
 
     $scope.save = function() {
-        Template.save(self.data, 1).then(function(data) {
+        Template.saveTemplate(self.data, 1).then(function(data) {
             swal('Saved!', 'Come back whenever to finish', 'success');
         });
     };

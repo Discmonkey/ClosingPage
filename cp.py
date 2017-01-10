@@ -177,10 +177,7 @@ def upload():
             return json.dumps(json_res), 200
 
         else:
-            # img_paths = ca.convert_and_extract(rand_file_name, file_dir, CURRENT_DIRECTORY)
-            img_paths = ['static/files/user_11/test-RRO/file-page1.jpg',
-                         'static/files/user_11/test-RRO/file-page2.jpg',
-                         'static/files/user_11/test-RRO/file-page3.jpg']
+            img_paths = ca.convert_and_extract(rand_file_name, file_dir, CURRENT_DIRECTORY)
             json_res = {
                 'display': 'ppt',
                 'source': img_paths
@@ -216,6 +213,9 @@ def publish_template(num):
     temp.save_template(template, num, user_id)
     return redirect('/login')
 
+@app.route('/p/<user_name>/<template_name>')
+def view_template(user_name, template_name):
+    pass
 
 @app.route('/test')
 def test():
