@@ -44,13 +44,13 @@ class User:
             return False
 
     def load_username_password(self, username, password):
-        row = self.pg.query('SELECT id FROM users where username=%(username)s and password=%(password)s', {
+        row = self.pg.query('SELECT id FROM users where (username=%(username)s or email=%(username)s) and password=%(password)s', {
             'username': username,
             'password': password
         })
 
         if row:
-            user_id = row[0]
+            user_id = row[0][0]
             return self.load_user(user_id)
         else:
             return False
