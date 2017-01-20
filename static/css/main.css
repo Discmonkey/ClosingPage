@@ -118,13 +118,13 @@ nav {
     .preview #logo label:hover {
       box-shadow: 0 0 3px 3px #d2d2d2; }
 .preview .large-presentation .presentation {
-  height: 250px;
+  height: 300px;
   width: 100%; }
 .preview .large-presentation .upload {
   margin-top: 80px;
   height: 40px; }
 .preview .medium-presentation .presentation {
-  height: 150px;
+  height: 200px;
   margin: 5px; }
 .preview .medium-presentation p {
   margin: 5px; }
