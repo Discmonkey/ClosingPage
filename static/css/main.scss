@@ -124,7 +124,7 @@ nav {
 	}
 
 	#cover-photo {
-		height: 150px;
+		height: 250px;
 		width: 100%;
 		div {
 			position: relative;
@@ -172,7 +172,7 @@ nav {
 
 	.large-presentation {
 		.presentation {
-			height: 200px;
+			height: 250px;
 			width: 100%;
 		}
 
@@ -312,7 +312,10 @@ nav {
 		vertical-align: middle;
 
 		i {
-			display: inline-block;
+			margin: auto;
+    		position: absolute;
+    		left: 0;
+    		right: 0;
 		}
 
 	}

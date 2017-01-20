@@ -1,5 +1,9 @@
 function TemplateOneCtrl($scope, $http, Template) {
     var self = this;
+    $scope.showUpload = true;
+    $scope.showPublish = true;
+    $scope.imageUploaded = false;
+    $scope.logoUploaded = false;
     this.data = {
         uploads: {
             coverImage: {display: 'default', source:'//:0'},
@@ -9,8 +13,8 @@ function TemplateOneCtrl($scope, $http, Template) {
             logo: {display: 'default', source: '//:0'}
         },
         inputs: {
-            'Subject': 'Whomever',
-            'Template Title': 'Title',
+            'Subject': 'name',
+            'Template Title': 'Template Title',
             'Main Description': 'Pitch',
             'Center Display Description': 'Description',
             'Left Display Description': 'Description',
@@ -22,12 +26,12 @@ function TemplateOneCtrl($scope, $http, Template) {
     $scope.inputs = this.data.inputs;
     $scope.uploads = this.data.uploads;
 
-    $scope.$watch('uploads', function(newVal, oldVal){
-        console.log('old', oldVal);
-        console.log('new', newVal);
-    }, true);
+    // $scope.$watch('uploads', function(newVal, oldVal){
+    //     console.log('old', oldVal);
+    //     console.log('new', newVal);
+    // }, true);
 
-    $scope.uploadBackground = function(files, target) {
+    $scope.uploadJPG = function(files, target) {
         var fd = new FormData();
         fd.append("file", files[0]);
         $http.post('/upload', fd, {
@@ -37,6 +41,11 @@ function TemplateOneCtrl($scope, $http, Template) {
         }).then(function(data){
             data = data.data;
             $scope.uploads[target].source = data.source;
+            if(target == 'logo') {
+                $scope.logoUploaded = true;
+            } else {
+                $scope.imageUploaded = false;
+            }
         },function(data) {
             console.log(data);
         });
@@ -48,6 +57,6 @@ function TemplateOneCtrl($scope, $http, Template) {
         });
     };
 
-    $scope.preview
+
 
 }

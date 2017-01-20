@@ -6,7 +6,6 @@ ClosingPage.controller('TemplatePickerCtrl', TemplatePickerCtrl)
 .component('pptDisplay', PPTDisplay)
 .component('gifDisplay', GIFDisplay)
 .controller('TemplateOneCtrl', TemplateOneCtrl)
-.controller('TemplateTwoCtrl', TemplateTwoCtrl)
 .directive('backImg', function() {
     return function (scope, element, attrs) {
         attrs.$observe('backImg', function (value) {
@@ -17,7 +16,8 @@ ClosingPage.controller('TemplatePickerCtrl', TemplatePickerCtrl)
         });
     }
 })
-.service('Template', TemplateService)
+
+    .service('Template', TemplateService)
 .config(function($stateProvider, $urlRouterProvider, $interpolateProvider) {
 
     $interpolateProvider.startSymbol('{(').endSymbol(')}');
@@ -50,7 +50,6 @@ ClosingPage.controller('TemplatePickerCtrl', TemplatePickerCtrl)
 
         .state('template-two', {
             url: '/template-two',
-            templateUrl: 'partials/template-two.pug',
-            controller: 'TemplateTwoCtrl'
+            templateUrl: 'partials/template-two.pug'
         });
 });

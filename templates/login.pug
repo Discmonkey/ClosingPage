@@ -15,18 +15,21 @@ body
                 img.logo(src='static/img/logo.svg')
             div#linkedin
                 a(href='https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=78c1zfn9rje6f4&redirect_uri=http://localhost:5000/linkedInAuth&state=asdf&scope=r_basicprofile,r_emailaddress')
-                    img(src='static/img/linkedin.png')
+                    button#linked-in-button
+                        img(src='static/img/linkedin.png')#linked-in-link
+            div#divider
+                p or
             form(action='/register', method='POST').register-form
                 input(type="text", placeholder="name", name='username', required)
                 input(type="password", placeholder="password", name='password', required)
                 input(type="text", placeholder="email address", name='email', required)
-                button create
+                button.login create
                 p.message Already registered?
                     a(href="#") Sign In
             form(action='/login', method='POST').login-form
                 input(type="text", placeholder="username", name='username', required)
                 input(type="password", placeholder="password", name='password', required )
-                button login
+                button.login login
                 p.message Not Registered?
                     a(href="#") Create an account
 

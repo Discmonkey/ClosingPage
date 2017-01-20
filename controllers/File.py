@@ -14,6 +14,10 @@ class FileController:
             os.makedirs(path)
 
     @staticmethod
+    def get_dir_contents(path):
+        return os.listdir(path)
+
+    @staticmethod
     def count_directory(path):
         return len(os.listdir(path))
 

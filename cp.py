@@ -45,12 +45,18 @@ def load_user(user_id):
     else:
         return None
 
+
 @login_manager.unauthorized_handler
 def unauthorized_callback():
     return redirect('/login')
 
 
 @app.route('/')
+def home():
+    return render_template('home.pug')
+
+
+@app.route('/create')
 @login_required
 def index():
     return render_template('index.pug')
@@ -67,7 +73,7 @@ def login():
         if user.load_username_password(username, password):
             login_user(user)
             flash('Login Success', 'success')
-            return redirect('/')
+            return redirect('/create')
         else:
             flash('Login Failed', 'error')
             return redirect('/login')
@@ -85,7 +91,7 @@ def register():
             user = User()
             user.load_user(user_id)
             login_user(user)
-            return redirect('/')
+            return redirect('/create')
         else:
             return redirect('/login')
 
@@ -110,7 +116,7 @@ def linked_in_auth():
         user = User()
         user.load_linked_in(token)
         login_user(user)
-        return redirect('/')
+        return redirect('/create')
 
 
 @app.route('/partials/<partial>')
@@ -145,17 +151,14 @@ def contact():
 @login_required
 def upload():
     if 'file' not in request.files:
-        flash('No file part', 'warning')
         return '[]', 400, {'Content-Type': 'application/json'}
 
     file = request.files['file']
     filename = secure_filename(file.filename)
     if filename == '':
-        flash('No file selected', 'warning')
         return '[]', 400, {'Content-Type': 'application/json'}
 
     if not up.is_file_allowed(filename):
-        flash('Please upload one of .ppt, .pdf, or .gif files', 'warning')
         return '[]', 415, {'Content-Type': 'application/json'}
 
     file_ext = up.get_file_ext(filename)
@@ -168,7 +171,7 @@ def upload():
         save_path = os.path.join(CURRENT_DIRECTORY, resource_path)
         file.save(save_path)
 
-        if file_ext != 'ppt':
+        if file_ext in ['gif', 'jpg', 'png']:
 
             json_res = {
                 'display': file_ext,
@@ -177,7 +180,7 @@ def upload():
             return json.dumps(json_res), 200
 
         else:
-            img_paths = ca.convert_and_extract(rand_file_name, file_dir, CURRENT_DIRECTORY)
+            img_paths = ca.convert_and_extract(rand_file_name, file_dir, CURRENT_DIRECTORY, file_ext)
             json_res = {
                 'display': 'ppt',
                 'source': img_paths
@@ -191,7 +194,7 @@ def upload():
 def remove():
     filename = secure_filename(request.json['filename'])
     user_id = current_user.get_id()
-    file_path = 'static/files/user_{}/'.format(user_id)
+    file_path = 'static/files/user_{}/'.format(user_id) + filename
     up.remove_file(file_path)
 
 
@@ -213,18 +216,15 @@ def publish_template(num):
     temp.save_template(template, num, user_id)
     return redirect('/login')
 
+
 @app.route('/p/<user_name>/<template_name>')
 def view_template(user_name, template_name):
     pass
 
+
 @app.route('/test')
 def test():
     return render_template('tests/test-page.pug')
-
-
-@app.route('/profile')
-def profile():
-    return render_template()
 
 
 @app.context_processor
