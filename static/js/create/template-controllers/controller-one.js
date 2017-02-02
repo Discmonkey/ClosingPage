@@ -1,4 +1,4 @@
-function TemplateOneCtrl($scope, $http, Template) {
+function TemplateOneCtrl($scope, $http, Template, $window) {
     var self = this;
     $scope.showUpload = true;
     $scope.showPublish = true;
@@ -56,6 +56,15 @@ function TemplateOneCtrl($scope, $http, Template) {
             swal('Saved!', 'Come back whenever to finish', 'success');
         });
     };
+
+    $scope.preview = function() {
+        Template.preview(self.data, 1).then(function(data) {
+            if (data.data) {
+                var location = "/preview/" + data.data.template_id;
+                $window.location.href = location;
+            }
+        })
+    }
 
 
 

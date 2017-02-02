@@ -27,7 +27,11 @@ class Template:
                                   'user_id': user_id,
                                   'number': number})
 
-        return 0
+        # will need to change.
+        rows = self.pg.query("SELECT max(id) from templates "
+                             "where number=%(number)s and user_id=%(user_id)s", {'number': number,
+                                                                               'user_id': user_id})
+        return rows[0][0]
 
     def load_template(self, status, number, user_id, name=''):
 
@@ -56,4 +60,13 @@ class Template:
 
         return False
 
+    def load_template_from_id(self, id):
 
+        params = {
+            'id': id
+        }
+
+        row = self.pg.query("SELECT info from templates where id = %(id)s", params)
+
+        if row:
+            return row[0][0]

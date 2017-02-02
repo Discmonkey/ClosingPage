@@ -16,8 +16,7 @@ ClosingPage.controller('TemplatePickerCtrl', TemplatePickerCtrl)
         });
     }
 })
-
-    .service('Template', TemplateService)
+.service('Template', TemplateService)
 .config(function($stateProvider, $urlRouterProvider, $interpolateProvider) {
 
     $interpolateProvider.startSymbol('{(').endSymbol(')}');

@@ -1,5 +1,58 @@
 extends layout
 block content
-	div.container
+	include legos/navbar
+	div.container#profile-page
 		div.col-md-12
-			form
+			div.jumbotron.text-center
+				form.form-horizontal(action="/profile")
+					fieldset
+						// Form Name
+						legend Profile
+						// Text input
+						.form-group
+							label.col-md-4.control-label(for='username') User Name
+							.col-md-4
+								input#username.form-control.input-md(name='username', type='text', placeholder='placeholder')
+						// Text input
+						.form-group
+							label.col-md-4.control-label(for='firstname') First Name
+							.col-md-4
+								input#firstname.form-control.input-md(name='firstname', type='text', placeholder='placeholder')
+						// Text input
+						.form-group
+							label.col-md-4.control-label(for='lastname') Last Name
+							.col-md-4
+								input#lastname.form-control.input-md(name='lastname', type='text', placeholder='placeholder')
+						// Text input
+						.form-group
+							label.col-md-4.control-label(for='email') Email
+							.col-md-4
+								input#email.form-control.input-md(name='email', type='text', placeholder='placeholder')
+						// Text input
+						.form-group
+							label.col-md-4.control-label(for='phone') Phone
+							.col-md-4
+								input#phone.form-control.input-md(name='phone', type='text', placeholder='placeholder')
+						// Text input
+						.form-group
+							label.col-md-4.control-label(for='position') Position
+							.col-md-4
+								input#position.form-control.input-md(name='position', type='text', placeholder='placeholder')
+						// Text input
+						.form-group
+							label.col-md-4.control-label(for='business') Business
+							.col-md-4
+								input#business.form-control.input-md(name='business', type='text', placeholder='placeholder')
+						// Text input
+						.form-group
+							label.col-md-4.control-label(for='address') Business Address
+							.col-md-4
+								input#address.form-control.input-md(name='address', type='text', placeholder='placeholder')
+						// File Button
+						.form-group
+							label.col-md-4.control-label(for='filebutton') Profile Image
+							.col-md-4
+								input#filebutton.input-file(name='filebutton', type='file')
+						// Button
+						.form-group
+							button.btn.btn-primary Submit

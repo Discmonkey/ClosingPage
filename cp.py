@@ -118,6 +118,9 @@ def linked_in_auth():
         login_user(user)
         return redirect('/create')
 
+@app.route('/profile')
+def profile():
+    return render_template('views/profile.pug')
 
 @app.route('/partials/<partial>')
 def partials(partial):
@@ -215,6 +218,23 @@ def publish_template(num):
     user_id = current_user.get_id()
     temp.save_template(template, num, user_id)
     return redirect('/login')
+
+
+@app.route('/preview/<num>', methods=['POST', 'GET'])
+@login_required
+def preview_template(num):
+    if request.method == 'POST':
+        template = json.loads(request.data.decode('utf-8'))
+        user_id = current_user.get_id()
+        temp_id = temp.save_template(template, num, user_id)
+        data = json.dumps({'temp_id': temp_id})
+
+        return data, 200, {'Content-Type': 'application/json'}
+
+    elif request.method == 'GET':
+        template = temp.load_template_from_id(num)
+        template = json.loads(template)
+        return render_template("pages/preview.pug", template=template)
 
 
 @app.route('/p/<user_name>/<template_name>')

@@ -1,0 +1,49 @@
+extends layout_preview
+block content
+   div.container(ng-controller="Preview")
+      div.col-md-12.no-padding-left
+         div.templates
+            div.preview
+               div.row
+                  div.col-md-12
+                     div#cover-photo.document(back-img="{{template['uploads']['coverImage']['source']}}")
+               div.row
+                  div.col-md-5.col-md-offset-2
+                     h2 Hey, {{template['inputs['Subject']']}}
+                     p {{template['inputs']['Main Description']}}
+                  div.col-md-3.text-center
+                     div#logo.document(back-img="{{template['uploads']['logo']['source']}}")
+               div.row.text-center
+                  h2 {{template['inputs']['Template Title']}}
+               div.row
+                  div.col-md-8.col-md-offset-2.large-presentation
+                     div.document.presentation.text-center
+                        file-upload(state="{{template['uploads']['lrgDisplay']}}")
+               div.row
+                  div.col-md-8.text-center.col-md-offset-2
+                     p {{template['inputs']['Center Display Description']}}
+               div.row
+                  div.col-md-4.col-md-offset-2.medium-presentation
+                     div.row
+                        div.document.presentation.text-center
+                           file-upload(state="{{template['uploads']['medDisplayLeft']}}")
+                     div.row.text-center
+                        p {{template['inputs']['Left Display Description']}}
+                  div.col-md-4.medium-presentation
+                     div.row
+                        div.document.presentation.text-center
+                           file-upload(state="{{template['uploads']['medDisplayRight']")
+                     div.row.text-center
+                        p {{template['inputs['Right Display Description']']}}
+
+               div.row
+                  div.jumbotron.text-center
+                     h6 {{template['inputs['Quote']']}}
+               div.row
+                  div.col-md-8.col-md-offset-2
+                     div.preview-footer
+                        img.sign.pull-left(src='{{user.picture_url}}')
+                        div.byline.pull-left
+                           span.row {{user.username}}
+                           span.row {{user.job_title}}
+                        img.contact.pull-right(src='/static/img/phase-one/CTA.svg')

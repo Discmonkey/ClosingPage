@@ -13,4 +13,10 @@ function TemplateService($http) {
     this.loadTemplate = function(templateNum){
         return $http.get('/load-template/' + templateNum)
     };
+
+    this.preview = function(data, templateNum) {
+        return $http.post('/preview/' + templateNum, data, {
+            headers: {'Content-Type': 'application/json'}
+        });
+    }
 }
