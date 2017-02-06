@@ -1,8 +1,23 @@
-var PDFDisplay = {
-    controller: function(){},
-    bindings: {
-        path: '='
+var PPTDisplay = {
+    controller: function(){
+        this.slideIndex = 0;
+
+        this.left = function() {
+            if(this.slideIndex > 0) {
+                this.slideIndex -=1;
+            }
+        };
+
+        this.right = function() {
+            if(this.slideIndex < this.slides.length) {
+                this.slideIndex += 1;
+            }
+        };
+
+
     },
-    template: '<object style="width:100%;height:100%;" data="{($ctrl.path)}" type="application/pdf">' +
-    '<p>A pdf <a href="{($ctrl.path)}"> To the pdf </a></p> </object>'
+    bindings: {
+        slides: '='
+    },
+    templateUrl: '/partials/pdf-display.pug'
 };

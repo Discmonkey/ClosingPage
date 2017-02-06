@@ -327,6 +327,10 @@ nav {
 	.right {
 		right: 0;
 	}
+
+	&.pdf {
+		width: 60% !Important;
+	}
 }
 
 #profile-page {

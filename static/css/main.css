@@ -218,6 +218,8 @@ nav {
     left: 0; }
   .powerpoint .right {
     right: 0; }
+  .powerpoint.pdf {
+    width: 60% !Important; }
 
 #profile-page .jumbotron {
   background-color: white; }

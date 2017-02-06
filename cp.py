@@ -165,7 +165,7 @@ def upload():
         return '[]', 415, {'Content-Type': 'application/json'}
 
     file_ext = up.get_file_ext(filename)
-    file_dir = 'static/files/user_{}/'.format(current_user.get_id())
+    file_dir = '/static/files/user_{}/'.format(current_user.get_id())
 
     if file_ext in ['pdf', 'ppt', 'gif', 'jpg', 'png']:
 
@@ -233,7 +233,6 @@ def preview_template(num):
 
     elif request.method == 'GET':
         template = temp.load_template_from_id(num)
-        template = json.loads(template)
         return render_template("pages/preview.pug", template=template)
 
 

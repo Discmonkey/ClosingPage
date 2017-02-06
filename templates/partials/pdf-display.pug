@@ -1,0 +1,7 @@
+div.powerpoint.pdf
+	img(ng-src="{($ctrl.slides[$ctrl.slideIndex])}")
+	div.btn.btn-default(ng-click='$ctrl.left()').arrow.left
+		i.fa.fa-chevron-left
+	div.btn.btn-default(ng-click='$ctrl.right()').arrow.right
+		i.fa.fa-chevron-right
+
