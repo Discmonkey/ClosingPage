@@ -165,8 +165,7 @@ def upload():
         return '[]', 415, {'Content-Type': 'application/json'}
 
     file_ext = up.get_file_ext(filename)
-    file_dir = '/static/files/user_{}/'.format(current_user.get_id())
-
+    file_dir = 'static/files/user_{}/'.format(current_user.get_id())
     if file_ext in ['pdf', 'ppt', 'gif', 'jpg', 'png']:
 
         rand_file_name = up.create_file_name(filename)
@@ -178,7 +177,7 @@ def upload():
 
             json_res = {
                 'display': file_ext,
-                'source': resource_path
+                'source': '/' + resource_path
             }
             return json.dumps(json_res), 200
 
@@ -186,7 +185,7 @@ def upload():
             img_paths = ca.convert_and_extract(rand_file_name, file_dir, CURRENT_DIRECTORY, file_ext)
             json_res = {
                 'display': 'ppt',
-                'source': img_paths
+                'source': list(map(lambda x: '/' + x, img_paths))
             }
 
             return json.dumps(json_res), 200
@@ -210,6 +209,18 @@ def save_template(num):
     temp.save_template(template, num, user_id)
     return 'success'
 
+@app.route('/publish-from-create', methods=['POST'])
+@login_required
+def publish_from_create():
+    template = request.data
+    template = json.loads(template.decode('utf-8'))
+    user_id = current_user.get_id()
+    template_id = temp.save_template(template, 1, user_id)
+    temp.publish_template(template_id)
+    user_name = current_user.username
+    return_json = {'url': 'http://closingpage.com/{}/{}'.format(user_name, template_id)}
+
+    return json.dumps(return_json), 200, {'Content-Type': 'application/json'}
 
 @app.route('/publish-template/<num>', methods=['POST'])
 @login_required
@@ -220,6 +231,17 @@ def publish_template(num):
     return redirect('/login')
 
 
+@app.route('/publish-direct/<template_id>', methods=['POST'])
+def publish_direct(template_id):
+    if temp.publish_template(template_id):
+        user_name = current_user.username
+        return_json = {'url': 'http://closingpage.com/{}/{}'.format(user_name, template_id)}
+
+        return json.dumps(return_json), 200, {'Content-Type': 'application/json'}
+
+    return "template not found", 404, {'Content-Type': 'application/json'}
+
+
 @app.route('/preview/<num>', methods=['POST', 'GET'])
 @login_required
 def preview_template(num):
@@ -227,18 +249,23 @@ def preview_template(num):
         template = json.loads(request.data.decode('utf-8'))
         user_id = current_user.get_id()
         temp_id = temp.save_template(template, num, user_id)
-        data = json.dumps({'temp_id': temp_id})
+        data = json.dumps({'template_id': temp_id})
 
         return data, 200, {'Content-Type': 'application/json'}
 
     elif request.method == 'GET':
         template = temp.load_template_from_id(num)
-        return render_template("pages/preview.pug", template=template)
+        return render_template("pages/preview.pug", template=template, template_id=num)
 
 
-@app.route('/p/<user_name>/<template_name>')
-def view_template(user_name, template_name):
-    pass
+@app.route('/<user_name>/<template_id>', methods=['POST', 'GET'])
+def view_template(user_name, template_id):
+    template = temp.load_template_from_id(template_id, True)
+
+    if template:
+        return render_template("pages/published_template.pug", template=template)
+    else:
+        return render_template("pages/template_not_found.pug")
 
 
 @app.route('/test')

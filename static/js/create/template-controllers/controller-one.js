@@ -64,7 +64,27 @@ function TemplateOneCtrl($scope, $http, Template, $window) {
                 $window.location.href = location;
             }
         })
-    }
+    };
+
+    $scope.publish = function() {
+        console.log('clicked');
+
+        $http.post('/publish-from-create', self.data, {
+            headers: {'Content-Type': 'application/json'}
+        }).then(function(response) {
+            console.log(response);
+            var url = response.data['url'];
+            swal({
+                title: "<h2> Awesome! Your page has been published</h2>",
+                text: "<p id='url-p'>" + url +"</p><button class='btn btn-success copy-button' " +
+                "data-clipboard-action='copy' data-clipboard-target='#url-p'> Copy </button>",
+                html: true
+            });
+
+        });
+    };
+
+    new Clipboard('.copy-button');
 
 
 

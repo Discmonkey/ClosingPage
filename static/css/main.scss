@@ -41,6 +41,7 @@ body {
   }
 }
 
+
 img.profile {
 	height: 48px;
 	border-radius: 50%;
@@ -329,7 +330,8 @@ nav {
 	}
 
 	&.pdf {
-		width: 60% !Important;
+		width: 60% !important;
+		margin-left: 20% !important;
 	}
 }
 

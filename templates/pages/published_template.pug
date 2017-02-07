@@ -1,10 +1,6 @@
-extends layout_preview
+extends layout_publish
 block content
-
-   script.
-      var templateId = {{template_id}};
-   div(ng-controller="Preview")
-      include legos/navbar.pug
+   div(ng-app="Closingpage")
       div.container
          div.col-md-12.no-padding-left
             div.templates

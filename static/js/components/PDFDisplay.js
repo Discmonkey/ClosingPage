@@ -1,4 +1,4 @@
-var PPTDisplay = {
+var PDFDisplay = {
     controller: function(){
         this.slideIndex = 0;
 

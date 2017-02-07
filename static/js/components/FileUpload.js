@@ -20,7 +20,7 @@ var FileUpload = {
         this.sources = {
             gif: '//:0',
             ppt: [],
-            pdf: '//:0'
+            pdf: []
         };
 
         this.uploadFile = function(files) {

@@ -60,13 +60,26 @@ class Template:
 
         return False
 
-    def load_template_from_id(self, id):
+    def load_template_from_id(self, template_id, published=False):
+        try:
+            template_id = int(template_id)
+        except Exception as e:
+            print(e)
+            return False
 
         params = {
-            'id': id
+            'id': template_id,
+            'published': 1 if published else 0
         }
 
-        row = self.pg.query("SELECT info from templates where id = %(id)s", params)
+        row = self.pg.query("SELECT info from templates where id = %(id)s and status >= %(published)s", params)
 
         if row:
             return row[0][0]
+
+        else:
+            return False
+
+    def publish_template(self, template_id):
+        self.pg.run_query("UPDATE templates set status=1 where id = %(template_id)s", {'template_id': template_id})
+        return True

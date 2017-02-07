@@ -17,4 +17,4 @@ ClosingPage
 }).config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('{(').endSymbol(')}');
 })
-.controller('Preview', Preview);
+.controller('Publish', Publish);

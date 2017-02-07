@@ -6,9 +6,9 @@ nav.navbar.navbar-default
 		div#navbar.navbar-collapse.collapse
 			ul.nav.navbar-nav.navbar-right
 				li(ng-show="showUpload")
-					img(src='static/img/phase-one/preview.png', ng-click="preview()").btn
+					img(src='/static/img/phase-one/preview.png', ng-click="preview()").btn
 				li(ng-show="showPublish")
-					img(src='static/img/phase-one/publish.png', ng-click="publish()")#publish.btn
+					img(src='/static/img/phase-one/publish.png', ng-click="publish()")#publish.btn
 				li
 					img.profile(src='{{user.picture_url}}')
 				li.dropdown

@@ -20,5 +20,5 @@ div.form-component
 			i.fa.fa-spinner.fa-spin
 
 		ppt-display(ng-show="$ctrl.state.display=='ppt'", slides="$ctrl.sources.ppt")
-		gif-display(ng-show="$ctrl.state.display=='gif'", slides="$ctrl.sources.gif")
+		gif-display(ng-show="$ctrl.state.display=='gif'", path="$ctrl.sources.gif")
 		pdf-display(ng-show="$ctrl.state.display=='pdf'", slides="$ctrl.sources.pdf")

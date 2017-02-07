@@ -1,7 +1,9 @@
 var GIFDisplay = {
-    controller: function(){},
-    bindings: {
-        slides: '='
+    controller: function(){
+        this.path = "";
     },
-    template: '<img style="width:100%;height:100%;" src="{($ctrl.slides)}">'
+    bindings: {
+        path: '='
+    },
+    template: '<img style="width:100%;height:100%;" src="{($ctrl.path)}">'
 };
