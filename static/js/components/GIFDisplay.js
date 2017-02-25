@@ -5,5 +5,5 @@ var GIFDisplay = {
     bindings: {
         path: '='
     },
-    template: '<img style="width:100%;height:100%;" src="{($ctrl.path)}">'
+    template: '<img style="width:100%;height:100%;" ng-src="{($ctrl.path)}">'
 };

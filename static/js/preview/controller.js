@@ -2,16 +2,11 @@ function Preview($scope, $http) {
     $scope.showUpload = false;
     $scope.showPublish = true;
 
-    if (window.templateId == undefined)
-        var templateId = 0;
-
     $scope.publish = function() {
-        console.log('clicked');
         $http({
             method: 'POST',
-            url: '/publish-direct/'+templateId
+            url: '/publish-direct/'+ (templateId | 0 )
         }).then(function(response) {
-            console.log(response);
             var url = response.data['url'];
             swal({
                 title: "<h2> Awesome! Your page has been published</h2>",
