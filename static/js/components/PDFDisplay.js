@@ -19,5 +19,5 @@ var PDFDisplay = {
     bindings: {
         slides: '='
     },
-    templateUrl: '/partials/pdf-display.pug'
+    templateUrl: '/angular-components/pdf-display.pug'
 };

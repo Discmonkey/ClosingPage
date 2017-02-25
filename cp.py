@@ -133,6 +133,9 @@ def partials(partial):
 def partials_dir(partial_dir, partial):
     return render_template('partials/' + partial_dir + '/' + partial)
 
+@app.route('/angular-components/<partial>')
+def components(partial):
+    return render_template('angular-components/' + partial)
 
 @app.route('/logout')
 def logout():

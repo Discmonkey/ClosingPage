@@ -19,5 +19,5 @@ var PPTDisplay = {
     bindings: {
         slides: '='
     },
-    templateUrl: '/partials/ppt-display.pug'
+    templateUrl: '/angular-components/ppt-display.pug'
 };
