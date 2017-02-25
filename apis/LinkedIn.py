@@ -70,7 +70,7 @@ class LinkedIn:
             SET email=%(email)s, username=%(username)s, picture_url=%(picture_url)s,
             job_title=%(job_title)s, company=%(company)s, linkedin_token=%(token)s, first_name=%(first_name)s,
             last_name=%(last_name)s
-            WHERE linkedinid=%(id)s
+            WHERE linkedinid=%(id)s or email=%(email)s
             RETURNING *)
             
             INSERT INTO users (email, username, picture_url, job_title, company, linkedinid,

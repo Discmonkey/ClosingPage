@@ -42,20 +42,23 @@ class PostGres:
         return False
 
     def query(self, query, args=None):
-        self.cur.execute(query, args)
         try:
+            self.cur.execute(query, args)
             rows = self.cur.fetchall()
         except Exception as e:
-            self.connect()
+            self.conn.rollback()
             return []
 
         return rows
 
     def run_query(self, query, args):
-
-        self.cur.execute(query, args)
-        num_rows = self.cur.rowcount
-        self.conn.commit()
+        try:
+            self.cur.execute(query, args)
+            num_rows = self.cur.rowcount
+            self.conn.commit()
+        except:
+            self.conn.rollback()
+            return 0
 
         return num_rows
 
