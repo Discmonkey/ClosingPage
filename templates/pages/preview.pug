@@ -30,7 +30,7 @@ block content
                               if template['uploads']['lrgDisplay']['display'] == 'pdf'
                                  pdf-display(slides="{{ template['uploads']['lrgDisplay']['source']}}")
                               if template['uploads']['lrgDisplay']['display'] == 'gif'
-                                 img(style="width:100%;height:100%" src="{{template['uploads']['medDisplayLeft']['source']}}")
+                                 img(style="width:100%;height:100%", ng-click="showImageModal('{{template['uploads']['lrgDisplay']['source']}}')", src="{{template['uploads']['lrgDisplay']['source']}}")
                      div.row
                         div.col-md-8.text-center.col-md-offset-2
                            p {{ template['inputs']['Center Display Description'] }}
@@ -44,7 +44,7 @@ block content
                                  if template['uploads']['medDisplayLeft']['display'] == 'pdf'
                                     pdf-display(slides="{{ template['uploads']['medDisplayLeft']['source']}}")
                                  if template['uploads']['medDisplayLeft']['display'] == 'gif'
-                                    img(style="width:100%;height:100%" src="{{template['uploads']['medDisplayLeft']['source']}}")
+                                    img(style="width:100%;height:100%", ng-click="showImageModal('{{template['uploads']['medDisplayLeft']['source']}}')", src="{{template['uploads']['medDisplayLeft']['source']}}")
                            div.row.text-center
                               p {{ template['inputs']['Left Display Description'] }}
                         div.col-md-6.medium-presentation
@@ -55,7 +55,7 @@ block content
                                  if template['uploads']['medDisplayRight']['display'] == 'pdf'
                                     pdf-display(slides="{{ template['uploads']['medDisplayRight']['source']}}")
                                  if template['uploads']['medDisplayRight']['display'] == 'gif'
-                                    img(style="width:100%;height:100%" src="{{template['uploads']['medDisplayRight']['source']}}")
+                                    img(style="width:100%;height:100%", ng-click="showImageModal('{{template['uploads']['medDisplayRight']['source']}}')", src="{{template['uploads']['medDisplayRight']['source']}}")
                            div.row.text-center
                               p {{ template['inputs']['Right Display Description'] }}
 
