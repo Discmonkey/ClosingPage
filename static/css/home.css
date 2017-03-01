@@ -2,12 +2,15 @@
   width: 100%;
   height: 500px; }
 
+@media screen and (max-width: 767px) {
+  .make-taller {
+    height: 1000px; } }
 .footer-div {
   width: 100%;
   height: 300px; }
 
 #top-row {
-  background: url(/static/img/home/main/top_background.svg) no-repeat bottom center scroll;
+  background: url(/static/img/home/svg/top_background.svg) no-repeat bottom center scroll;
   background-size: cover; }
 
 #form {
@@ -72,6 +75,11 @@
     cursor: pointer; }
   #second-row .feature .set-height {
     height: 80px; }
+  @media screen and (max-width: 767px) {
+    #second-row .feature .set-height {
+      height: 20px; }
+    #second-row .feature img.short {
+      margin-bottom: 40px; } }
 
 #footer .feature-row {
   margin-top: 6%;
@@ -90,5 +98,9 @@
   height: 20px; }
 #footer .top {
   margin-bottom: 20px; }
+
+@media screen and (max-width: 767px) {
+  .make-taller {
+    height: 1000px; } }
 
 /*# sourceMappingURL=home.css.map */
