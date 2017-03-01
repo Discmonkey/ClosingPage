@@ -241,3 +241,34 @@ img.profile {
   margin: 15px auto auto;
 }
 
+.document-modal{
+	.modal-dialog {
+		max-height: 90vh;
+		margin: auto;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		position: fixed;
+		width: auto;
+		text-align: center;
+	}
+
+	.modal-content{
+		display: inline-block;
+	}
+
+	.modal-dialog *{
+		max-height: 90vh;
+	}
+
+	.arrow{
+		width: 2em;
+		height: 2em;
+	}
+
+	img{
+		width: auto;
+		height: auto;
+	}
+}

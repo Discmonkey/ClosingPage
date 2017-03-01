@@ -1,4 +1,4 @@
-function Preview($scope, $http) {
+function Preview($scope, $http, $uibModal) {
     $scope.showUpload = false;
     $scope.showPublish = true;
 
@@ -15,6 +15,15 @@ function Preview($scope, $http) {
                 html: true
             });
 
+        });
+    };
+
+    $scope.showImageModal = function(path) {
+        $uibModal.open({
+            template: '<img ng-src="{($modal.path)}">',
+            controller: DocumentModal({path: path}),
+            controllerAs: '$modal',
+            windowClass: 'document-modal'
         });
     };
 

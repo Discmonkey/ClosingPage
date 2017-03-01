@@ -163,4 +163,25 @@ img.profile {
   display: block;
   margin: 15px auto auto; }
 
+.document-modal .modal-dialog {
+  max-height: 90vh;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  width: auto;
+  text-align: center; }
+.document-modal .modal-content {
+  display: inline-block; }
+.document-modal .modal-dialog * {
+  max-height: 90vh; }
+.document-modal .arrow {
+  width: 2em;
+  height: 2em; }
+.document-modal img {
+  width: auto;
+  height: auto; }
+
 /*# sourceMappingURL=preview.css.map */
