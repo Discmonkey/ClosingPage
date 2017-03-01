@@ -118,6 +118,14 @@ def linked_in_auth():
         login_user(user)
         return redirect('/create')
 
+@app.route('/get-in-touch', methods='POST')
+def get_in_touch():
+    username = request.form['first_name']
+    password = request.form['last_name']
+    email = request.form['email']
+
+    return 'success', 200
+
 
 @app.route('/profile')
 def profile():

@@ -80,6 +80,9 @@
       height: 20px; }
     #second-row .feature img.short {
       margin-bottom: 40px; } }
+  @media screen and (max-width: 540px) {
+    #second-row .feature .set-height {
+      height: 36px; } }
 
 #footer .feature-row {
   margin-top: 6%;

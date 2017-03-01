@@ -121,6 +121,12 @@ $grey: #737373;
         margin-bottom: 40px;
       }
     }
+
+    @media screen and (max-width: 540px) {
+      .set-height {
+        height: 36px;
+      }
+    }
   }
 }
 
