@@ -22,30 +22,116 @@ html(lang='en')
 			script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
 			script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
 	body
-		div.container
+		div.section-div#top-row
 			div.row
-				div#top-row
-					div.row
-						div.navbar.navbar-default
-							navbar-header
-								button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-main-collapse')
-									| Menu
-									i.fa.fa-bars
-								a.navbar-brand.page-scroll(href='#page-top')
-									img(src='/static/img/home/Files/header_logo.png')#navigation
-							.collapse.navbar-collapse.navbar-right.navbar-main-collapse
-								ul.nav.navbar-nav
-									li
-										a.page-scroll(href='#about') Product
-									li
-										a.page-scroll(href='#download') Pricing
-									li
-										a.page-scroll(href='#contact') Company
-									li
-										a.page-scroll(href='#contact') Request A Demo
-									li
-										img#header-image(src='/static/img/home/files/header_signup.png')
-			div.row row 2
-			div.row row 3
-			div.row row 4
+				div#nav-row
+					img.pull-left(src='/static/img/home/main/header_logo.png')
+					ul.pull-right.list-inline
+						li PRODUCT
+						li PRICING
+						li COMPANY
+						li
+							img(src='/static/img/home/main/header_sign_up.png')
+			div.row
+				div#title-row.text-center
+					h1 The art of followup
+					p
+						| An intuitive sales platform that allows sales teams
+						br
+						| to curate, package, send and track follow up assets,
+						br
+						| all at one destination.
+					a(href='/login')
+						img(src='/static/img/home/main/in_touch.png')
+		div.section-div#second-row
+			div.row
+				div#description.text-center
+					| Manage and organize all of your sales content in a single hub
+					br
+					br
+					| Package and personalize your sales content to impress clients and win deals
+					br
+					br
+					| Track your followups to get deep insights on how your clients engage
+				div#sections
+					div.row.feature-row
+						div.col-sm-3
+							div.feature.text-center
+								div.row
+									img.tall(src='/static/img/home/main/organization_icon.png')
+								h5 Organization
+								p.set-height Manage your assets and integrate different sources
+								div.row
+									img.short(src='/static/img/home/main/learn_more.png')
+						div.col-sm-3
+							div.feature.text-center
+								div.row
+									img.tall(src='/static/img/home/main/packaging_icon.png')
+								h5 Packaging
+								p.set-height Create beautiful, responsive and personalized sales pitches
+								div.row
+									img.short(src='/static/img/home/main/learn_more.png')
+						div.col-sm-3
+							div.feature.text-center
+								div.row
+									img.tall(src='/static/img/home/main/tracking_icon.png')
+								h5 Tracking
+								p.set-height Use analytics to identify and isolate your most effective assets
+								div.row
+									img.short(src='/static/img/home/main/learn_more.png')
+						div.col-sm-3
+							div.feature.text-center
+								div.row
+									img.tall(src='/static/img/home/main/notifications_icon.png')
+								h5 Notifications
+								p.set-height Never miss an opportunity, know when customers are interested
+								div.row
+									img.short(src='/static/img/home/main/learn_more.png')
+		div.section-div#form.text-center
+			h3 Get Updates
+			form(action='/get-in-touch', method='POST')
+				div.row
+					label First Name
+				div.row
+					input(type='text', name='first_name', required)
+				div.row
+					label Last Name
+				div.row
+					input(type='text', name='last_name', required)
+				div.row
+					label#email Email
+				div.row
+					input(type='email', name='email', required)
+				button
+					img(src='/static/img/home/main/in_touch.png')
+		div.footer-div#footer
+			div.row.feature-row
+				div.row.top
+					div.col-sm-4
+						p.links
+							| PRODUCT
+							br
+							br
+							| COMPANY
+							br
+							br
+							| PRICING
+							br
+							br
+							| REQUEST A DEMO
+					div.col-sm-4.col-sm-offset-4#bottom-logo
+						img(src='/static/img/home/svg/footer_logo.svg')
 
+				div.row.bottom
+					div.col-sm-4
+						div.row
+							div.col-xs-2
+								img.social(src='/static/img/home/svg/facebook.svg')
+							div.col-xs-2
+								img.social(src='/static/img/home/svg/twitter.svg')
+							div.col-xs-2
+								img.social(src='/static/img/home/svg/linkedin.svg')
+					div.small.col-sm-4.text-center
+						p Privacy Policy | Terms of Service
+					div.small.col-sm-4.text-center
+						p ©2017 ClosingPage Inc. All rights reserved
