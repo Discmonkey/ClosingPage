@@ -22,11 +22,11 @@ app.jinja_env.add_extension('pypugjs.ext.jinja.PyPugJSExtension')
 app.secret_key = 'not_so_secret, eh?'
 
 
-pg = PostGres()
-pg.connect()
-li = LinkedIn()
-ca = ConvertApi()
-up = FileController(ALLOWED_EXTENSIONS)
+pgModel = PostGres()
+pgModel.connect()
+liApi = LinkedIn()
+caApi = ConvertApi()
+uploadCtrl = FileController(ALLOWED_EXTENSIONS)
 temp = Template()
 
 login_manager = LoginManager()
@@ -86,7 +86,7 @@ def register():
     email = request.form['email']
 
     if username and password and email:
-        user_id = pg.register_user(username, email, password)
+        user_id = pgModel.register_user(username, email, password)
         if user_id:
             user = User()
             user.load_user(user_id)
@@ -103,7 +103,7 @@ def linked_in_auth():
         payload = {
             'grant_type': 'authorization_code',
             'code': code,
-            'redirect_uri': 'http://closingpage.com/linkedInAuth',
+            'redirect_uri': 'http://localhost:5000/linkedInAuth',
             'client_id': '78c1zfn9rje6f4',
             'client_secret': 'ijSehCeY9DmRIEWw'
         }
@@ -111,16 +111,18 @@ def linked_in_auth():
         res = requests.post('https://www.linkedin.com/oauth/v2/accessToken', data=payload)
 
         token = json.loads(res.content.decode('UTF-8'))['access_token']
-        info = li.get_profile_info(token)
-        li.insert_profile(info, token)
+        info = liApi.get_profile_info(token)
+        liApi.insert_profile(info, token)
         user = User()
         user.load_linked_in(token)
         login_user(user)
         return redirect('/create')
 
+
 @app.route('/profile')
 def profile():
     return render_template('views/profile.pug')
+
 
 @app.route('/partials/<partial>')
 def partials(partial):
@@ -131,6 +133,9 @@ def partials(partial):
 def partials_dir(partial_dir, partial):
     return render_template('partials/' + partial_dir + '/' + partial)
 
+@app.route('/angular-components/<partial>')
+def components(partial):
+    return render_template('angular-components/' + partial)
 
 @app.route('/logout')
 def logout():
@@ -161,14 +166,15 @@ def upload():
     if filename == '':
         return '[]', 400, {'Content-Type': 'application/json'}
 
-    if not up.is_file_allowed(filename):
+    if not uploadCtrl.is_file_allowed(filename):
         return '[]', 415, {'Content-Type': 'application/json'}
 
-    file_ext = up.get_file_ext(filename)
+    file_ext = uploadCtrl.get_file_ext(filename)
     file_dir = 'static/files/user_{}/'.format(current_user.get_id())
+
     if file_ext in ['pdf', 'ppt', 'gif', 'jpg', 'png']:
 
-        rand_file_name = up.create_file_name(filename)
+        rand_file_name = uploadCtrl.create_file_name(filename)
         resource_path = file_dir + rand_file_name
         save_path = os.path.join(CURRENT_DIRECTORY, resource_path)
         file.save(save_path)
@@ -182,7 +188,7 @@ def upload():
             return json.dumps(json_res), 200
 
         else:
-            img_paths = ca.convert_and_extract(rand_file_name, file_dir, CURRENT_DIRECTORY, file_ext)
+            img_paths = caApi.convert_and_extract(rand_file_name, file_dir, CURRENT_DIRECTORY, file_ext)
             json_res = {
                 'display': 'ppt',
                 'source': list(map(lambda x: '/' + x, img_paths))
@@ -197,7 +203,7 @@ def remove():
     filename = secure_filename(request.json['filename'])
     user_id = current_user.get_id()
     file_path = 'static/files/user_{}/'.format(user_id) + filename
-    up.remove_file(file_path)
+    uploadCtrl.remove_file(file_path)
 
 
 @app.route('/save-template/<num>', methods=['POST'])
@@ -221,6 +227,7 @@ def publish_from_create():
     return_json = {'url': 'http://closingpage.com/{}/{}'.format(user_name, template_id)}
 
     return json.dumps(return_json), 200, {'Content-Type': 'application/json'}
+
 
 @app.route('/publish-template/<num>', methods=['POST'])
 @login_required

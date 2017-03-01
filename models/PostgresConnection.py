@@ -1,5 +1,6 @@
 import psycopg2
 
+
 class PostGres:
 
     def __init__(self):
@@ -40,15 +41,24 @@ class PostGres:
 
         return False
 
-    def query(self, query, args):
-        self.cur.execute(query, args)
-        rows = self.cur.fetchall()
+    def query(self, query, args=None):
+        try:
+            self.cur.execute(query, args)
+            rows = self.cur.fetchall()
+        except Exception as e:
+            self.conn.rollback()
+            return []
+
         return rows
 
     def run_query(self, query, args):
-        self.cur.execute(query, args)
-        num_rows = self.cur.rowcount
-        self.conn.commit()
+        try:
+            self.cur.execute(query, args)
+            num_rows = self.cur.rowcount
+            self.conn.commit()
+        except:
+            self.conn.rollback()
+            return 0
 
         return num_rows
 

@@ -31,5 +31,5 @@ var PPTDisplay = {
         slides: '=',
         modal: '=?'
     },
-    templateUrl: '/partials/ppt-display.pug'
+    templateUrl: '/angular-components/ppt-display.pug'
 };

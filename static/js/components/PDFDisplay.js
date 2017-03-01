@@ -31,5 +31,5 @@ var PDFDisplay = {
         slides: '=',
         modal: '=?'
     },
-    templateUrl: '/partials/pdf-display.pug'
+    templateUrl: '/angular-components/pdf-display.pug'
 };

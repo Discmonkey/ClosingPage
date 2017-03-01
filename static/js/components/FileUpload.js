@@ -5,7 +5,7 @@ var FileUpload = {
     bindings: {
         state: '='
     },
-    templateUrl: '/partials/file-upload.pug',
+    templateUrl: '/angular-components/file-upload.pug',
     controller: function($http) {
         var self = this;
         self.state.display = 'default';
