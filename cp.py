@@ -133,9 +133,11 @@ def partials(partial):
 def partials_dir(partial_dir, partial):
     return render_template('partials/' + partial_dir + '/' + partial)
 
+
 @app.route('/angular-components/<partial>')
 def components(partial):
     return render_template('angular-components/' + partial)
+
 
 @app.route('/logout')
 def logout():
@@ -214,6 +216,7 @@ def save_template(num):
     user_id = current_user.get_id()
     temp.save_template(template, num, user_id)
     return 'success'
+
 
 @app.route('/publish-from-create', methods=['POST'])
 @login_required
