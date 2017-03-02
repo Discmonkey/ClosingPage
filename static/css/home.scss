@@ -28,34 +28,52 @@ $grey: #737373;
   color: white;
   padding-top: 2%;
   h3 {
+    display: block;
+    width: 40%;
+    text-align: center;
+    margin-left: 30%;
     margin-bottom: 4%;
   }
   img {
     height: 30px;
+
   }
   button {
-    margin-top: 2%;
     background: transparent no-repeat;
     border: none;
     cursor:pointer;
     overflow: hidden;
     outline:none;
+    display: block;
+    margin: auto;
   }
 
   input {
     width: 40%;
+    margin-left: 30%;
     margin-bottom: 2%;
     height: 40px;
     color: black;
   }
 
   label {
-    margin-left: -32%;
+    width: 40%;
+    text-align: left;
+    margin-left: 30%;
   }
 
-  #email {
-    margin-left: -36%;
+  @media screen and (max-width: 700px) {
+    input {
+      width: 60%;
+      margin-left: 20%;
+    }
+
+    label {
+      width: 60%;
+      margin-left: 20%;
+    }
   }
+
 }
 
 #nav-row {
@@ -183,5 +201,12 @@ $grey: #737373;
   .add-padding {
     padding-left: 32px;
     padding-right: 32px;
+    width: 400px;
   }
+
+  .intro-paragraph {
+    width: 60%;
+    margin-left: 20%;
+  }
+
 }

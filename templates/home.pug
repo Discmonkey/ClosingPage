@@ -34,8 +34,8 @@ html(lang='en')
 						//		img(src='/static/img/home/main/header_sign_up.png')
 			div.row
 				div#title-row.text-center
-					h1.add-padding Attacking Attachments
-					p.add-padding.text-center
+					h1.add-padding.intro-paragraph Attacking Attachments
+					p.add-padding.text-center.intro-paragraph
 						| Rethink the way you share sales content when closing deals.
 						br
 						| Delight customers by bringing boring email attachments to life
@@ -90,7 +90,7 @@ html(lang='en')
 								//div.row
 								//	a(href='#form')
 								//		img.short(src='/static/img/home/buttons/stay_in_loop.png')
-		div.section-div#form.text-center
+		div.section-div#form
 			h3 Get Updates
 			form(action='/get-in-touch', method='POST')
 				div.row
@@ -102,7 +102,7 @@ html(lang='en')
 				div.row
 					input(type='text', name='last_name', required)
 				div.row
-					label#email Email
+					label Email
 				div.row
 					input(type='email', name='email', required)
 				button
