@@ -204,9 +204,14 @@ $grey: #737373;
     width: 400px;
   }
 
+  .intro-title {
+    display: block;
+    margin: auto;
+  }
+
   .intro-paragraph {
-    width: 60%;
-    margin-left: 20%;
+    display: block;
+    margin: auto;
     padding-left: 30px;
     padding-right: 30px;
   }
