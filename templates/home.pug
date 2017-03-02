@@ -30,14 +30,15 @@ html(lang='en')
 						li PRODUCT
 						li PRICING
 						li COMPANY
-						li
-							a(href='/login')
-								img(src='/static/img/home/main/header_sign_up.png')
+						//li
+						//	a(href='/login')
+						//		img(src='/static/img/home/main/header_sign_up.png')
 			div.row
 				div#title-row.text-center
 					h1 Attacking Attachments
 					p.add-padding.text-center
-						| Rethink the way you share sales content when closing deals
+						| Rethink the way you share sales content when closing deals.
+						br
 						| Say goodbye to attaching “stuff” to emails and instead impress
 						| customers by bringing those docs to life on personalized web pages
 						| -- within seconds.
@@ -90,7 +91,7 @@ html(lang='en')
 								p.set-height Never miss an opportunity, know when customers are interested
 								div.row
 									a(href='#form')
-										img.short(src='/static/img/home/main/learn_more.png')
+										img.short.shown(src='/static/img/home/main/learn_more.png')
 		div.section-div#form.text-center
 			h3 Get Updates
 			form(action='/get-in-touch', method='POST')

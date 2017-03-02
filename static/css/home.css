@@ -78,6 +78,8 @@
   #second-row .feature img.short {
     height: 30px;
     cursor: pointer; }
+  #second-row .feature img.hidden {
+    display: none; }
   #second-row .feature .set-height {
     height: 80px; }
   @media screen and (max-width: 767px) {
