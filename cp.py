@@ -131,9 +131,9 @@ def get_in_touch():
     message = "{} {} is interested in trying out closingpage, he can be contacted at {}".format(first,
                                                                                                 last,
                                                                                                 email)
-    emailCtrl.send(message, 'Demo Request', ['maxmgrinchenko@gmail.com'])
+    emailCtrl.send(message, 'Demo Request', ['maxmgrinchenko@gmail.com', 'kp@closingpage.com'])
 
-    return 'success', 200
+    return redirect('/')
 
 
 @app.route('/profile')
