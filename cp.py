@@ -8,9 +8,11 @@ from werkzeug.utils import secure_filename
 
 from apis.ConvertApi import ConvertApi
 from apis.LinkedIn import LinkedIn
+
 from controllers.File import FileController
 from controllers.user import User
 from controllers.Template import Template
+from controllers.simple_email import Email
 from models.PostgresConnection import PostGres
 
 CURRENT_DIRECTORY = os.path.dirname(os.path.realpath(__file__))
@@ -27,6 +29,7 @@ pgModel.connect()
 liApi = LinkedIn()
 caApi = ConvertApi()
 uploadCtrl = FileController(ALLOWED_EXTENSIONS)
+emailCtrl = Email()
 temp = Template()
 
 login_manager = LoginManager()
@@ -121,9 +124,14 @@ def linked_in_auth():
 
 @app.route('/get-in-touch', methods=['POST'])
 def get_in_touch():
-    username = request.form['first_name']
-    password = request.form['last_name']
+    first = request.form['first_name']
+    last = request.form['last_name']
     email = request.form['email']
+
+    message = "{} {} is interested in trying out closingpage, he can be contacted at {}".format(first,
+                                                                                                last,
+                                                                                                email)
+    emailCtrl.send(message, 'Demo Request', ['maxmgrinchenko@gmail.com'])
 
     return 'success', 200
 
