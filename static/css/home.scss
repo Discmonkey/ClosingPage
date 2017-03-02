@@ -23,7 +23,8 @@ $grey: #737373;
 }
 
 #form {
-  background: url(/static/img/home/form/form_background.png) no-repeat bottom center scroll;
+  background: url(/static/img/home/form/form_background.svg) no-repeat bottom center scroll;
+  background-size: cover;
   color: white;
   padding-top: 2%;
   h3 {
