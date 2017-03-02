@@ -5,7 +5,9 @@ $grey: #737373;
   height: 500px;
 }
 
-
+.padding-bottom {
+  padding-bottom: 30px;
+}
 @media screen and (max-width: 767px) {
   .make-taller {
     height: 1000px;
