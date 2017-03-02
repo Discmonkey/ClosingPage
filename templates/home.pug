@@ -11,7 +11,6 @@ html(lang='en')
 		link(rel="shortcut icon", href="static/favicon.ico")
 		link(href='static/css/lib/bootstrap.min.css', rel='stylesheet')
 		// Custom Fonts
-		link(href='static/css/lib/font-awesome.min.css', rel='stylesheet', type='text/css')
 		link(href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic', rel='stylesheet', type='text/css')
 		link(href='https://fonts.googleapis.com/css?family=Montserrat:400,700', rel='stylesheet', type='text/css')
 		// Theme CSS
@@ -41,7 +40,7 @@ html(lang='en')
 						br
 						| Delight customers by bringing boring email attachments to life on a unified platform.
 					a(href='#form')
-						img(src='/static/img/home/main/in_touch.png')
+						img(src='/static/img/home/buttons/join_private_beta.png')
 		div.section-div#second-row.make-taller
 			div.row
 				div#description.text-center.add-padding
@@ -60,36 +59,36 @@ html(lang='en')
 									img.tall(src='/static/img/home/main/organization_icon.png')
 								h5 Organization
 								p.set-height Manage your assets and integrate different sources
-								div.row
-									a(href='#form')
-										img.short(src='/static/img/home/main/learn_more.png')
+								//div.row
+								//	a(href='#form')
+								//		img.short(src='/static/img/home/buttons/stay_in_loop.svg')
 						div.col-sm-3
 							div.feature.text-center
 								div.row
 									img.tall(src='/static/img/home/main/packaging_icon.png')
 								h5 Packaging
 								p.set-height Create beautiful, responsive and personalized sales pitches
-								div.row
-									a(href='#form')
-										img.short(src='/static/img/home/main/learn_more.png')
+								//div.row
+								//	a(href='#form')
+								//		img.short(src='/static/img/home/buttons/stay_in_loop.png')
 						div.col-sm-3
 							div.feature.text-center
 								div.row
 									img.tall(src='/static/img/home/main/tracking_icon.png')
 								h5 Tracking
 								p.set-height Use analytics to identify and isolate your most effective assets
-								div.row
-									a(href='#form')
-										img.short(src='/static/img/home/main/learn_more.png')
+								//div.row
+								//	a(href='#form')
+								//		img.short(src='/static/img/home/buttons/stay_in_loop.png')
 						div.col-sm-3
 							div.feature.text-center
 								div.row
 									img.tall(src='/static/img/home/main/notifications_icon.png')
 								h5 Notifications
 								p.set-height Never miss an opportunity, know when customers are interested
-								div.row
-									a(href='#form')
-										img.short.shown(src='/static/img/home/main/learn_more.png')
+								//div.row
+								//	a(href='#form')
+								//		img.short(src='/static/img/home/buttons/stay_in_loop.png')
 		div.section-div#form.text-center
 			h3 Get Updates
 			form(action='/get-in-touch', method='POST')
@@ -106,7 +105,7 @@ html(lang='en')
 				div.row
 					input(type='email', name='email', required)
 				button
-					img(src='/static/img/home/main/in_touch.png')
+					img(src='/static/img/home/buttons/stay_in_loop.svg')
 		div.footer-div#footer
 			div.row.feature-row
 				div.row.top
@@ -129,9 +128,11 @@ html(lang='en')
 					div.col-xs-4
 						div.row
 							div.col-xs-2
-								img.social(src='/static/img/home/svg/facebook.svg')
+								a(href='https://www.facebook.com/theclosingpage')
+									img.social(src='/static/img/home/svg/facebook.svg')
 							div.col-xs-2
-								img.social(src='/static/img/home/svg/twitter.svg')
+								a(href='https://www.twitter.com/theclosingpage')
+									img.social(src='/static/img/home/svg/twitter.svg')
 							div.col-xs-2
 								img.social(src='/static/img/home/svg/linkedin.svg')
 					div.small.col-xs-4.text-center

@@ -131,7 +131,9 @@ def get_in_touch():
     message = "{} {} is interested in trying out closingpage, he can be contacted at {}".format(first,
                                                                                                 last,
                                                                                                 email)
-    emailCtrl.send(message, 'Demo Request', ['maxmgrinchenko@gmail.com', 'kp@closingpage.com'])
+    emailCtrl.send(message, 'Demo Request', ['maxmgrinchenko@gmail.com',
+                                             'kp@closingpage.com',
+                                             'sharath@closingpage.com'])
 
     return redirect('/')
 
