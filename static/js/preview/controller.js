@@ -19,12 +19,7 @@ function Preview($scope, $http, $uibModal) {
     };
 
     $scope.showImageModal = function(path) {
-        $uibModal.open({
-            template: '<img ng-src="{($modal.path)}">',
-            controller: DocumentModal({path: path}),
-            controllerAs: '$modal',
-            windowClass: 'document-modal'
-        });
+        $uibModal.open(DocumentModal('<img ng-src="{($modal.path)}">', {path: path}));
     };
 
     new Clipboard('.copy-button');
