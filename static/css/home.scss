@@ -23,6 +23,9 @@ $grey: #737373;
 #top-row {
   background: url(/static/img/home/svg/top_background.svg) no-repeat bottom center scroll;
   background-size: cover;
+  a {
+    color: white;
+  }
 }
 
 #form {
