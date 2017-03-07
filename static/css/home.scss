@@ -23,6 +23,9 @@ $grey: #737373;
 #top-row {
   background: url(/static/img/home/svg/top_background.svg) no-repeat bottom center scroll;
   background-size: cover;
+  a {
+    color: white;
+  }
 }
 
 #form {
@@ -88,7 +91,7 @@ $grey: #737373;
   font-size: 8px;
   img {
     height: 24px;
-    margin-top: 3px;
+    margin-top: -2px;
     cursor: pointer;
   }
   a.text {

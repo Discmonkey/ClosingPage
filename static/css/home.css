@@ -16,6 +16,8 @@
 #top-row {
   background: url(/static/img/home/svg/top_background.svg) no-repeat bottom center scroll;
   background-size: cover; }
+  #top-row a {
+    color: white; }
 
 #form {
   background: url(/static/img/home/form/form_background.svg) no-repeat bottom center scroll;
@@ -65,7 +67,7 @@
   font-size: 8px; }
   #nav-row img {
     height: 24px;
-    margin-top: 3px;
+    margin-top: -2px;
     cursor: pointer; }
   #nav-row a.text {
     margin-top: 2px; }
