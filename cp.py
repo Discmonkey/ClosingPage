@@ -62,7 +62,9 @@ def home():
 @app.route('/create')
 @login_required
 def index():
-    return render_template('index.pug')
+    user = User()
+    user.load_user(session['user_id'])
+    return render_template('index.pug', user=user)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -75,6 +77,7 @@ def login():
         user = User()
         if user.load_username_password(username, password):
             login_user(user)
+            session['user_id'] = user.id
             flash('Login Success', 'success')
             return redirect('/create')
         else:
@@ -94,6 +97,7 @@ def register():
             user = User()
             user.load_user(user_id)
             login_user(user)
+            session['user_id'] = user_id
             return redirect('/create')
         else:
             return redirect('/login')
@@ -119,6 +123,7 @@ def linked_in_auth():
         user = User()
         user.load_linked_in(token)
         login_user(user)
+        session['user_id'] = user.id
         return redirect('/create')
 
 
@@ -138,9 +143,26 @@ def get_in_touch():
     return redirect('/')
 
 
-@app.route('/profile')
+@app.route('/profile', methods=['GET', 'POST'])
+@login_required
 def profile():
-    return render_template('views/profile.pug')
+    user = User()
+    user.load_user(session['user_id'])
+    if request.method == 'POST':
+        user.email = request.form['email']
+        user.company = request.form['business']
+        user.first_name = request.form['firstname']
+        user.last_name = request.form['lastname']
+        user.job_title = request.form['position']
+        user.company = request.form['business']
+        # user.picture_url = request.form['filebutton']
+        user.phone = request.form['phone']
+        user.calendly = request.form['calendly']
+        user.signature = request.form['signature']
+        user.address = request.form['address']
+
+        user.save_user()
+    return render_template('views/profile.pug', user=user)
 
 
 @app.route('/partials/<partial>')

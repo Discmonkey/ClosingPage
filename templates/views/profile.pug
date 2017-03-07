@@ -4,7 +4,7 @@ block content
 	div.container#profile-page
 		div.col-md-12
 			div.jumbotron.text-center
-				form.form-horizontal(action="/profile")
+				form.form-horizontal(action="/profile", method="post")
 					fieldset
 						// Form Name
 						legend Profile
@@ -17,37 +17,47 @@ block content
 						.form-group
 							label.col-md-4.control-label(for='firstname') First Name
 							.col-md-4
-								input#firstname.form-control.input-md(name='firstname', type='text', placeholder='placeholder')
+								input#firstname.form-control.input-md(name='firstname', type='text', placeholder='placeholder', value="{{user['first_name'] if user['first_name'] != None}}")
 						// Text input
 						.form-group
 							label.col-md-4.control-label(for='lastname') Last Name
 							.col-md-4
-								input#lastname.form-control.input-md(name='lastname', type='text', placeholder='placeholder')
+								input#lastname.form-control.input-md(name='lastname', type='text', placeholder='placeholder', value="{{user['last_name'] if user['last_name'] != None}}")
 						// Text input
 						.form-group
 							label.col-md-4.control-label(for='email') Email
 							.col-md-4
-								input#email.form-control.input-md(name='email', type='text', placeholder='placeholder')
+								input#email.form-control.input-md(name='email', type='text', placeholder='placeholder', value="{{user['email'] if user['email'] != None}}")
 						// Text input
 						.form-group
 							label.col-md-4.control-label(for='phone') Phone
 							.col-md-4
-								input#phone.form-control.input-md(name='phone', type='text', placeholder='placeholder')
+								input#phone.form-control.input-md(name='phone', type='text', placeholder='placeholder', value="{{user['phone'] if user['phone'] != None}}")
 						// Text input
 						.form-group
 							label.col-md-4.control-label(for='position') Position
 							.col-md-4
-								input#position.form-control.input-md(name='position', type='text', placeholder='placeholder')
+								input#position.form-control.input-md(name='position', type='text', placeholder='placeholder', value="{{user['job_title'] if user['job_title'] != None}}")
 						// Text input
 						.form-group
 							label.col-md-4.control-label(for='business') Business
 							.col-md-4
-								input#business.form-control.input-md(name='business', type='text', placeholder='placeholder')
+								input#business.form-control.input-md(name='business', type='text', placeholder='placeholder', value="{{user['company'] if user['company'] != None}}")
 						// Text input
 						.form-group
 							label.col-md-4.control-label(for='address') Business Address
 							.col-md-4
-								input#address.form-control.input-md(name='address', type='text', placeholder='placeholder')
+								input#address.form-control.input-md(name='address', type='text', placeholder='placeholder', value="{{user['address'] if user['address'] != None}}")
+						// Calendly URL
+						.form-group
+							label.col-md-4.control-label(for='calendly') Calendly
+							.col-md-4
+								input#calendly.form-control.input-md(name='calendly', type='url', placeholder='https://calendly.com/yourname', value="{{user['calendly'] if user['calendly'] != None}}")
+						// Default Signature
+						.form-group
+							label.col-md-4.control-label(for='signature') Signature
+							.col-md-4
+								textarea#signature.form-control.input-md(name='signature', placeholder='Default: address') {{user['signature'] if user['signature'] != None}}
 						// File Button
 						.form-group
 							label.col-md-4.control-label(for='filebutton') Profile Image
