@@ -6,11 +6,11 @@ function TemplateOneCtrl($scope, $http, Template, $window) {
     $scope.logoUploaded = false;
     this.data = {
         uploads: {
-            coverImage: {display: 'default', source:'//:0'},
-            lrgDisplay: {display: 'default', source:''},
-            medDisplayLeft: {display: 'default', source:''},
-            medDisplayRight: {display: 'default', source:''},
-            logo: {display: 'default', source: '//:0'}
+            coverImage: {display: 'default', source:'//:0', name: ''},
+            lrgDisplay: {display: 'default', source:'', name: ''},
+            medDisplayLeft: {display: 'default', source:'', name: ''},
+            medDisplayRight: {display: 'default', source:'', name: ''},
+            logo: {display: 'default', source: '//:0', name: ''}
         },
         inputs: {
             'Subject': 'name',

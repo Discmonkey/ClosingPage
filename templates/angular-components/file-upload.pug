@@ -1,24 +1,28 @@
-div.form-component
-	div.presentation.text-center
-		img(ng-show="$ctrl.state.display=='default'", src="/static/img/phase-one/upload.svg",
-		ng-click="$ctrl.showModal()")
-		div.mini-modal.text-center(ng-show="$ctrl.state.display=='form'")
-			div.row
-				div.col-md-1.col-md-offset-8
-					button.btn.btn-danger(ng-click='$ctrl.exitModal()')
-						span.fa.fa-remove
-			div.spacer
-				div.row.text-center
-					p Cool, let's go grab your files.
-			div.row
-				label.label.label-primary
-					input(type="file",onchange="angular.element(this).scope().$ctrl.uploadFile(this.files)")
-					span.padding-right Upload From Computer
-					span.fa.fa-file
+div.document.presentation.text-center(ng-style="$ctrl.marginStyle")
+	div.form-component(ng-style="$ctrl.backgroundStyle")
+		div.presentation.text-center
+			img(ng-show="$ctrl.state.display=='default'", src="/static/img/phase-one/upload.svg",
+			ng-click="$ctrl.showModal()")
+			div.mini-modal.text-center(ng-show="$ctrl.state.display=='form'")
+				div.row
+					div.col-md-1.col-md-offset-8
+						button.btn.btn-danger(ng-click='$ctrl.exitModal()')
+							span.fa.fa-remove
+				div.spacer
+					div.row.text-center
+						p Cool, let's go grab your files.
+				div.row
+					label.label.label-primary
+						input(type="file",onchange="angular.element(this).scope().$ctrl.uploadFile(this.files)")
+						span.padding-right Upload From Computer
+						span.fa.fa-file
 
-		div.loading(ng-show="$ctrl.state.display=='load'").text-center
-			i.fa.fa-spinner.fa-spin
+			div.loading(ng-show="$ctrl.state.display=='load'").text-center
+				i.fa.fa-spinner.fa-spin
 
-		ppt-display(ng-show="$ctrl.state.display=='ppt'", slides="$ctrl.sources.ppt")
-		gif-display(ng-show="$ctrl.state.display=='gif'", path="$ctrl.sources.gif")
-		pdf-display(ng-show="$ctrl.state.display=='pdf'", slides="$ctrl.sources.pdf")
+			ppt-display(ng-show="$ctrl.state.display=='ppt'", slides="$ctrl.sources.ppt")
+			gif-display(ng-show="$ctrl.state.display=='gif'", path="$ctrl.sources.gif")
+			pdf-display(ng-show="$ctrl.state.display=='pdf'", slides="$ctrl.sources.pdf")
+			button.btn.btn-danger(ng-show="$ctrl.state.display=='ppt'||$ctrl.state.display=='gif'||$ctrl.state.display=='pdf'", ng-click="$ctrl.deleteFile()")
+				i.fa.fa-trash
+				| Delete
