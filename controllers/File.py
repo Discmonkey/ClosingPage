@@ -1,5 +1,5 @@
-import os
-from shutil import copyfile, copy
+import os, os.path
+from shutil import copyfile, copy, rmtree
 import string
 import random
 
@@ -49,12 +49,18 @@ class FileController:
         return '.'.join(arr)
 
     @staticmethod
-    def remove_file(file_path):
-        os.remove(file_path)
-
-
-
-
+    def remove_file(root_path, file_path):
+        real_root = os.path.realpath(root_path)
+        real_path = os.path.realpath(os.path.join(real_root, file_path))
+        if not real_path.startswith(os.path.join(real_root, 'static')):
+            return False  # don't allow malicious users to delete arbitrary files
+        os.remove(real_path)
+        name, ext = os.path.splitext(real_path)
+        if ext == '.ppt' or ext == '.pdf':
+            # remove the corresponding zip and directory
+            os.remove(name + '.zip')
+            rmtree(name)
+        return True
 
 
 

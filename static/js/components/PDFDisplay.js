@@ -18,13 +18,16 @@ var PDFDisplay = {
 
         this.showModal = function (){
             if (!this.modal) {
-                $uibModal.open({
-                    template: '<pdf-display slides="$modal.slides" modal="true"></pdf-display>',
-                    controller: DocumentModal({slides: this.slides}),
-                    controllerAs: '$modal',
-                    windowClass: 'document-modal'
-                });
+                $uibModal.open(DocumentModal('<pdf-display slides="$modal.slides" modal="true"></pdf-display>',
+                    {slides: this.slides}));
             }
+        };
+
+        this.keyUp = function (e){
+            if (e.keyCode == 39)
+                this.right();
+            else if (e.keyCode == 37)
+                this.left();
         };
     },
     bindings: {

@@ -204,7 +204,8 @@ def upload():
 
             json_res = {
                 'display': file_ext,
-                'source': '/' + resource_path
+                'source': '/' + resource_path,
+                'name': rand_file_name
             }
             return json.dumps(json_res), 200
 
@@ -212,7 +213,8 @@ def upload():
             img_paths = caApi.convert_and_extract(rand_file_name, file_dir, CURRENT_DIRECTORY, file_ext)
             json_res = {
                 'display': 'ppt',
-                'source': list(map(lambda x: '/' + x, img_paths))
+                'source': list(map(lambda x: '/' + x, img_paths)),
+                'name': rand_file_name
             }
 
             return json.dumps(json_res), 200
@@ -224,7 +226,7 @@ def remove():
     filename = secure_filename(request.json['filename'])
     user_id = current_user.get_id()
     file_path = 'static/files/user_{}/'.format(user_id) + filename
-    uploadCtrl.remove_file(file_path)
+    return 'success' if uploadCtrl.remove_file(app.root_path, file_path) else 'failure'
 
 
 @app.route('/save-template/<num>', methods=['POST'])

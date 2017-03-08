@@ -1,4 +1,4 @@
-div.powerpoint.pdf
+div.powerpoint.pdf(ng-attr-tabindex="{($ctrl.modal && '0' || undefined)}", ng-attr-autofocus="{($ctrl.modal || undefined)}", ng-keyup="$ctrl.keyUp($event)")
 	img(ng-src="{($ctrl.slides[$ctrl.slideIndex])}" ng-click="$ctrl.showModal()")
 	div.btn.btn-default(ng-click='$ctrl.left()').arrow.left
 		i.fa.fa-chevron-left
