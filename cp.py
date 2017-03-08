@@ -30,7 +30,7 @@ liApi = LinkedIn()
 caApi = ConvertApi()
 uploadCtrl = FileController(ALLOWED_EXTENSIONS)
 emailCtrl = Email()
-temp = Template()
+tempCtrl = Template()
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -233,7 +233,7 @@ def save_template(num):
     template = request.data
     template = json.loads(template.decode('utf-8'))
     user_id = current_user.get_id()
-    temp.save_template(template, num, user_id)
+    tempCtrl.save_template(template, num, user_id)
     return 'success'
 
 
@@ -243,7 +243,7 @@ def publish_from_create():
     template = request.data
     template = json.loads(template.decode('utf-8'))
     user_id = current_user.get_id()
-    template_id = temp.save_template(template, 1, user_id)
+    template_id = tempCtrl.save_template(template, 1, user_id)
     temp.publish_template(template_id)
     user_name = current_user.username
     return_json = {'url': 'http://closingpage.com/{}/{}'.format(user_name, template_id)}
@@ -256,7 +256,7 @@ def publish_from_create():
 def publish_template(num):
     template = json.loads(request.data.decode('utf-8'))
     user_id = current_user.get_id()
-    temp.save_template(template, num, user_id)
+    tempCtrl.save_template(template, num, user_id)
     return redirect('/login')
 
 
@@ -277,25 +277,30 @@ def preview_template(num):
     if request.method == 'POST':
         template = json.loads(request.data.decode('utf-8'))
         user_id = current_user.get_id()
-        temp_id = temp.save_template(template, num, user_id)
+        temp_id = tempCtrl.save_template(template, num, user_id)
         data = json.dumps({'template_id': temp_id})
 
         return data, 200, {'Content-Type': 'application/json'}
 
     elif request.method == 'GET':
-        template = temp.load_template_from_id(num)
+        template = tempCtrl.load_template_from_id(num)
         return render_template("pages/preview.pug", template=template, template_id=num)
 
 
 @app.route('/<user_name>/<template_id>', methods=['POST', 'GET'])
 def view_template(user_name, template_id):
-    template = temp.load_template_from_id(template_id, True)
+    template = tempCtrl.load_template_from_id(template_id, True)
 
     if template:
         return render_template("pages/published_template.pug", template=template)
     else:
         return render_template("pages/template_not_found.pug")
 
+@app.route('/load-template/<template_num>', methods=['GET'])
+def load_template(template_num):
+    user_id = current_user.get_id()
+    template = tempCtrl.load_template()
+    pass
 
 @app.route('/test')
 def test():
