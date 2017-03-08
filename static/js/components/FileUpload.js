@@ -9,6 +9,9 @@ var FileUpload = {
     controller: function($http) {
         var self = this;
         self.state.display = 'default';
+        self.state.name = '';
+        self.backgroundStyle = {};
+        self.marginStyle = {};
         this.showModal = function() {
             self.state.display = 'form';
         };
@@ -36,8 +39,29 @@ var FileUpload = {
                 data = data.data;
                 self.state.source = data.source;
                 self.state.display = data.display;
+                self.state.name = data.name;
                 self.sources[data.display] = data.source;
+                self.backgroundStyle = {'background-color': 'white'};
+                self.marginStyle = {'margin-bottom': '2.5em'};
             },function(data) {
+                console.log(data);
+            });
+        };
+
+        this.deleteFile = function (){
+            self.state.display = 'load';
+            $http.post('/removeFile', {filename: self.state.name}, {
+                withCredentials: true
+            }).then(function (){
+                self.state.display = 'form';
+                self.state.source = '';
+                self.sources.gif = '//:0';
+                self.sources.ppt = [];
+                self.sources.pdf = [];
+                self.backgroundStyle = {};
+                self.marginStyle = {};
+            },function (data){
+                console.log('Error:');
                 console.log(data);
             });
         };
