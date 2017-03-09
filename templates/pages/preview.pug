@@ -73,10 +73,19 @@ block content
                                     span.row {{user.job_title}}
                                     span.row {{user.company}}
                      div.col-xs-4.text-center
-                        div.footer-container.display-block.center
-                           div.row WEB: www.datavibe.com
-                           div.row HQ: 3423 Piedmont Raode NE
-                           div.row Atlanta, GA 30305
+                        div.footer-container.display-block.center(style="white-space: pre-line;") {{ template['footer']['signature'] }}
                      div.col-xs-4.text-center
-                        div.footer-container.display-block.right
-                           img.contact(src='/static/img/phase-one/CTA.svg')
+                        div.footer-container.display-block.right.row
+                           {% set size = 12//((1 if template['footer']['phone'] != '' else 0) + (1 if template['footer']['calendly'] != '' else 0) + (1 if template['footer']['email'] != '' else 0)) %}
+                           {% if template['footer']['email'] != '' %}
+                           div(class="col-xs-{{size}}") {# Jinja2 expressions don't work in Pug class lists #}
+                              a.contact.contact-icon.email(href="mailto:{{ template['footer']['email'] }}")
+                           {% endif %}
+                           {% if template['footer']['calendly'] != '' %}
+                           div(class="col-xs-{{size}}")
+                              a.contact.contact-icon.calendly(href="{{ template['footer']['calendly'] }}")
+                           {% endif %}
+                           {% if template['footer']['phone'] != '' %}
+                           div(class="col-xs-{{size}}")
+                              a.contact.contact-icon.phone(href="tel:{{ template['footer']['phone'] }}", uib-tooltip="{{template['footer']['phone']}}", tooltip-append-to-body="true")
+                           {% endif %}

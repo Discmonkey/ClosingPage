@@ -193,4 +193,16 @@ img.profile {
   border-radius: 0.5em;
   padding: 0.4em 0 0 0; }
 
+.contact-icon {
+  background: url(/static/img/phase-one/CTA.svg) transparent no-repeat;
+  background-size: cover;
+  width: 40px;
+  cursor: pointer; }
+  .contact-icon.email {
+    background-position: -3px 0; }
+  .contact-icon.calendly {
+    background-position: -52px 0; }
+  .contact-icon.phone {
+    background-position: -102px 0; }
+
 /*# sourceMappingURL=preview.css.map */

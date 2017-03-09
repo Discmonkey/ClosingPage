@@ -63,7 +63,7 @@ def home():
 @login_required
 def index():
     user = User()
-    user.load_user(session['user_id'])
+    user.load_user(current_user.get_id())
     return render_template('index.pug', user=user)
 
 
@@ -77,7 +77,6 @@ def login():
         user = User()
         if user.load_username_password(username, password):
             login_user(user)
-            session['user_id'] = user.id
             flash('Login Success', 'success')
             return redirect('/create')
         else:
@@ -97,7 +96,6 @@ def register():
             user = User()
             user.load_user(user_id)
             login_user(user)
-            session['user_id'] = user_id
             return redirect('/create')
         else:
             return redirect('/login')
@@ -147,7 +145,7 @@ def get_in_touch():
 @login_required
 def profile():
     user = User()
-    user.load_user(session['user_id'])
+    user.load_user(current_user.get_id())
     if request.method == 'POST':
         user.email = request.form['email']
         user.company = request.form['business']

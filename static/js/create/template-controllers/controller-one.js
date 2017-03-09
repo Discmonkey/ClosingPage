@@ -20,11 +20,25 @@ function TemplateOneCtrl($scope, $http, Template, $window) {
             'Left Display Description': 'Description',
             'Right Display Description': 'Description',
             'Quote': 'Awesome Quote'
+        },
+        footer: {
+            signature: '',
+            phone: '',
+            calendly: '',
+            email: ''
         }
+    };
+
+    this.popovers = {
+        phone: false,
+        email: false,
+        calendly: false
     };
 
     $scope.inputs = this.data.inputs;
     $scope.uploads = this.data.uploads;
+    $scope.footer = this.data.footer;
+    $scope.popovers = this.popovers;
 
     // $scope.$watch('uploads', function(newVal, oldVal){
     //     console.log('old', oldVal);
@@ -82,6 +96,21 @@ function TemplateOneCtrl($scope, $http, Template, $window) {
             });
 
         });
+    };
+
+    $scope.setFooter = function (signature, phone, calendly, email){
+        self.data.footer.signature = signature;
+        self.data.footer.phone = phone;
+        self.data.footer.calendly = calendly;
+        self.data.footer.email = email;
+    };
+
+    $scope.togglePopover = function (popover){
+        for (var k in self.popovers) {
+            if (self.popovers.hasOwnProperty(k) && k != popover)
+                self.popovers[k] = false;
+        }
+        self.popovers[popover] = !self.popovers[popover];
     };
 
     new Clipboard('.copy-button');

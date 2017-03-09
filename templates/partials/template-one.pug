@@ -1,5 +1,23 @@
 include legos/navbar
-div.container
+script(type="text/ng-template", id="phonePopover").
+	<div class="form-group">
+		<label>Phone:</label>
+		<input type="tel" ng-model="footer.phone" class="form-control">
+		<button ng-click="togglePopover('phone')" class="btn btn-primary btn-sm">OK</button>
+	</div>
+script(type="text/ng-template", id="calendlyPopover").
+	<div class="form-group">
+		<label>Calendly:</label>
+		<input type="url" ng-model="footer.calendly" class="form-control">
+		<button ng-click="togglePopover('calendly')" class="btn btn-primary btn-sm">OK</button>
+	</div>
+script(type="text/ng-template", id="emailPopover").
+	<div class="form-group">
+		<label>Email:</label>
+		<input type="email" ng-model="footer.email" class="form-control">
+		<button ng-click="togglePopover('email')" class="btn btn-primary btn-sm">OK</button>
+	</div>
+div.container(ng-init="setFooter('{{user.signature if user.signature != None else user.address}}', '{{user.phone if user.phone != None}}', '{{user.calendly if user.calendly != None}}', '{{user.email if user.email != None}}')")
 	div.row#template-one
 		div.col-md-3.template-controls
 			div.enclosure
@@ -61,11 +79,23 @@ div.container
 							h6 {(inputs['Quote'])}
 					div.row
 						div.col-md-8.col-md-offset-2
-							div.preview-footer
-								img.sign.pull-left(src='{{user.picture_url}}')
-								div.byline.pull-left
-									span.row {{user.username}}
-									span.row {{user.job_title}}
-								img.contact.pull-right(src='/static/img/phase-one/CTA.svg')
+							div.preview-footer.row
+								div.col-xs-4
+									img.sign.pull-left(src='{{user.picture_url}}')
+									div.byline.pull-right
+										span.row {{user.username}}
+										span.row {{user.job_title}}
+								div.col-xs-4
+									textarea.form-control(ng-model="footer.signature", style="margin-left: 0.5em;", placeholder="Signature")
+								div.col-xs-4
+									div.contact.pull-right.contact-icon.phone(uib-popover-template="'phonePopover'",
+									popover-is-open="popovers.phone", popover-trigger="'none'", ng-click="togglePopover('phone')",
+									popover-placement="auto top", popover-append-to-body="true")
+									div.contact.pull-right.contact-icon.calendly(uib-popover-template="'calendlyPopover'",
+									popover-is-open="popovers.calendly", popover-trigger="'none'", ng-click="togglePopover('calendly')",
+									popover-placement="auto top", popover-append-to-body="true")
+									div.contact.pull-right.contact-icon.email(uib-popover-template="'emailPopover'",
+									popover-is-open="popovers.email", popover-trigger="'none'", ng-click="togglePopover('email')",
+									popover-placement="auto top", popover-append-to-body="true")
 
 		

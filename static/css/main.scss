@@ -239,6 +239,26 @@ nav {
 	}
 }
 
+.contact-icon{
+	background: url(/static/img/phase-one/CTA.svg) transparent no-repeat;
+	background-size: cover;
+	width: 30px;
+	margin-right: 4px;
+	cursor: pointer;
+
+	&.email{
+		background-position: 0 0;
+	}
+
+	&.calendly{
+		background-position: -35px 0;
+	}
+
+	&.phone{
+		background-position: -70px 0;
+	}
+}
+
 .form-component {
 	background-color: #d6d6d6;
 	.presentation {
@@ -341,4 +361,11 @@ nav {
 	}
 }
 
+.popover{
+	background-color: black;
+	color: white;
 
+	.arrow:after{
+		border-top-color: black !important;
+	}
+}

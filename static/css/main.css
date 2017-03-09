@@ -154,6 +154,19 @@ nav {
     height: 30px;
     margin-top: 5px; }
 
+.contact-icon {
+  background: url(/static/img/phase-one/CTA.svg) transparent no-repeat;
+  background-size: cover;
+  width: 30px;
+  margin-right: 4px;
+  cursor: pointer; }
+  .contact-icon.email {
+    background-position: 0 0; }
+  .contact-icon.calendly {
+    background-position: -35px 0; }
+  .contact-icon.phone {
+    background-position: -70px 0; }
+
 .form-component {
   background-color: #d6d6d6; }
   .form-component .presentation {
@@ -224,5 +237,11 @@ nav {
 
 #profile-page .jumbotron {
   background-color: white; }
+
+.popover {
+  background-color: black;
+  color: white; }
+  .popover .arrow:after {
+    border-top-color: black !important; }
 
 /*# sourceMappingURL=main.css.map */
