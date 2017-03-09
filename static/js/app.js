@@ -50,5 +50,5 @@ ClosingPage.controller('TemplatePickerCtrl', TemplatePickerCtrl)
         .state('template-two', {
             url: '/template-two',
             templateUrl: 'partials/template-two.pug'
-        });
+        })
 });
