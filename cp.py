@@ -246,7 +246,7 @@ def publish_from_create():
     template = json.loads(template.decode('utf-8'))
     user_id = current_user.get_id()
     template_id = tempCtrl.save_template(template, 1, user_id)
-    temp.publish_template(template_id)
+    tempCtrl.publish_template(template_id)
     user_name = current_user.username
     return_json = {'url': 'http://closingpage.com/{}/{}'.format(user_name, template_id)}
 
@@ -264,7 +264,7 @@ def publish_template(num):
 
 @app.route('/publish-direct/<template_id>', methods=['POST'])
 def publish_direct(template_id):
-    if temp.publish_template(template_id):
+    if tempCtrl.publish_template(template_id):
         user_name = current_user.username
         return_json = {'url': 'http://closingpage.com/{}/{}'.format(user_name, template_id)}
 
