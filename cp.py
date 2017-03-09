@@ -298,6 +298,7 @@ def view_template(user_name, template_id):
     else:
         return render_template("pages/template_not_found.pug")
 
+
 @app.route('/load-template/<template_num>', methods=['GET'])
 def load_template(template_num):
     user_id = current_user.get_id()
