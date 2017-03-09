@@ -85,9 +85,9 @@ div.container(ng-init="setFooter('{{(user.signature if user.signature != None) |
 									div.byline.pull-right
 										span.row {{user.username}}
 										span.row {{user.job_title}}
-								div.col-xs-4
+								div.col-xs-5
 									textarea.form-control(ng-model="footer.signature", style="margin-left: 0.5em;", placeholder="Signature")
-								div.col-xs-4
+								div.col-xs-3
 									div.contact.pull-right.contact-icon.phone(uib-popover-template="'phonePopover'",
 									popover-is-open="popovers.phone", popover-trigger="'none'", ng-click="togglePopover('phone')",
 									popover-placement="auto top", popover-append-to-body="true")

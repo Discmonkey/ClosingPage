@@ -152,7 +152,7 @@ nav {
     display: inline-block;
     height: 40px;
     border-radius: 50%;
-    margin-right: 3px; }
+    margin-left: -3px; }
   .preview div.preview-footer .byline {
     display: inline-block; }
   .preview div.preview-footer .contact {
