@@ -17,7 +17,7 @@ script(type="text/ng-template", id="emailPopover").
 		<input type="email" ng-model="footer.email" class="form-control">
 		<button ng-click="togglePopover('email')" class="btn btn-primary btn-sm">OK</button>
 	</div>
-div.container(ng-init="setFooter('{{(user.signature if user.signature != None) | replace('\'', '\\\'') | replace('\n', '\\n') | replace('\r', '')}}', '{{user.phone if user.phone != None}}', '{{user.calendly if user.calendly != None}}', '{{user.email if user.email != None}}')")
+div.container(ng-init="setFooter('{{(user.signature if user.signature != None) | replace('\'', '\\\'') | replace('\n', '\\n') | replace('\r', '')}}', '{{(user.phone if user.phone != None)| replace('\'', '\\\'') | replace('\n', '\\n') | replace('\r', '')}}', '{{(user.calendly if user.calendly != None)| replace('\'', '\\\'') | replace('\n', '\\n') | replace('\r', '')}}', '{{(user.email if user.email != None)| replace('\'', '\\\'') | replace('\n', '\\n') | replace('\r', '')}}')")
 	div.row#template-one
 		div.col-md-3.template-controls
 			div.enclosure
