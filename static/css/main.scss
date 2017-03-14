@@ -42,12 +42,14 @@ body {
 }
 
 
-img.profile {
+.profile {
 	height: 48px;
+	width: 48px;
 	border-radius: 50%;
 	border: 2px solid $closing-page-green;
 	margin-top: 8px;
 	margin-right: 5px;
+	background-size: cover;
 }
 nav {
 	background-color: $dark-background !important;

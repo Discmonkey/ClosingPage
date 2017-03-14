@@ -24,12 +24,14 @@ body {
   vertical-align: middle;
   float: none; }
 
-img.profile {
+.profile {
   height: 48px;
+  width: 48px;
   border-radius: 50%;
   border: 2px solid #4caf50;
   margin-top: 8px;
-  margin-right: 5px; }
+  margin-right: 5px;
+  background-size: cover; }
 
 nav {
   background-color: #1d1d1d !important; }

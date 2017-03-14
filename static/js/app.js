@@ -6,6 +6,7 @@ ClosingPage.controller('TemplatePickerCtrl', TemplatePickerCtrl)
 .component('pptDisplay', PPTDisplay)
 .component('gifDisplay', GIFDisplay)
 .controller('TemplateOneCtrl', TemplateOneCtrl)
+.controller('Profile', Profile)
 .directive('backImg', function() {
     return function (scope, element, attrs) {
         attrs.$observe('backImg', function (value) {

@@ -50,11 +50,11 @@ class User:
         return self.pg.run_query('''UPDATE users
         SET email = %(email)s, picture_url = %(picture_url)s, job_title = %(job_title)s, company = %(company)s,
           first_name = %(first_name)s, last_name = %(last_name)s, phone = %(phone)s, calendly = %(calendly)s,
-          signature = %(signature)s, address = %(address)s
+          signature = %(signature)s, address = %(address)s, username = %(username)s
         WHERE id=%(id)s''', {'id': self.id, 'email': self.email, 'picture_url': self.picture_url,
                              'job_title': self.job_title, 'company': self.company, 'first_name': self.first_name,
                              'last_name': self.last_name, 'phone': self.phone, 'calendly': self.calendly,
-                             'signature': self.signature, 'address': self.address})
+                             'signature': self.signature, 'address': self.address, 'username': self.username})
 
     def load_linked_in(self, token):
         user_id_row = self.pg.query('SELECT id FROm users where linkedin_token=%(token)s', {'token': token})[0]

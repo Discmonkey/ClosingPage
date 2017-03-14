@@ -147,13 +147,14 @@ def profile():
     user = User()
     user.load_user(current_user.get_id())
     if request.method == 'POST':
+        user.username = request.form['username']
         user.email = request.form['email']
         user.company = request.form['business']
         user.first_name = request.form['firstname']
         user.last_name = request.form['lastname']
         user.job_title = request.form['position']
         user.company = request.form['business']
-        # user.picture_url = request.form['filebutton']
+        user.picture_url = request.form['picture_url']
         user.phone = request.form['phone']
         user.calendly = request.form['calendly']
         user.signature = request.form['signature']

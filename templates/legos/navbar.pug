@@ -10,7 +10,7 @@ nav.navbar.navbar-default
 				li(ng-show="showPublish")
 					img(src='/static/img/phase-one/publish.png', ng-click="publish()")#publish.btn
 				li
-					img.profile(src='{{user.picture_url}}')
+					.profile(style='background-image: url({{user.picture_url}});')
 				li.dropdown
 					a(href='', data-toggle='dropdown',
 					role='button', aria-haspopup='true', aria-expanded="false").dropdown-toggle {{user.username}}

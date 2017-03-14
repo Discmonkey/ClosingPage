@@ -1,8 +1,8 @@
 extends layout
 block content
 	include legos/navbar
-	div.container#profile-page
-		div.col-md-12
+	div.container#profile-page(ng-controller="Profile as $ctrl")
+		div.col-md-12(ng-init="$ctrl.setPicture('{{user['picture_url']}}')")
 			div.jumbotron.text-center
 				form.form-horizontal(action="/profile", method="post")
 					fieldset
@@ -12,7 +12,7 @@ block content
 						.form-group
 							label.col-md-4.control-label(for='username') User Name
 							.col-md-4
-								input#username.form-control.input-md(name='username', type='text', placeholder='placeholder')
+								input#username.form-control.input-md(name='username', type='text', placeholder='placeholder', value="{{user['username']}}")
 						// Text input
 						.form-group
 							label.col-md-4.control-label(for='firstname') First Name
@@ -61,8 +61,13 @@ block content
 						// File Button
 						.form-group
 							label.col-md-4.control-label(for='filebutton') Profile Image
-							.col-md-4
-								input#filebutton.input-file(name='filebutton', type='file')
+							.col-md-3
+								input#filebutton.input-file(name='filebutton', type='file', style='padding-top: 7px;', onchange="angular.element(this).scope().$ctrl.uploadPicture(this.files)", ng-show="!$ctrl.loading")
+								span(ng-show="$ctrl.loading")
+									i.fa.fa-spinner.fa-spin
+							.col-md-1
+								.profile(ng-style="$ctrl.style")
+							input#pictureurl(type='hidden', value='{($ctrl.pictureUrl)}', name='picture_url')
 						// Button
 						.form-group
 							button.btn.btn-primary Submit
