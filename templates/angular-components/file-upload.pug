@@ -1,5 +1,5 @@
-div.document.presentation.text-center(ng-style="$ctrl.marginStyle")
-	div.form-component(ng-style="$ctrl.backgroundStyle")
+div.document.presentation.text-center
+	div.form-component
 		div.presentation.text-center
 			img(ng-show="$ctrl.state.display=='default'", src="/static/img/phase-one/upload.svg",
 			ng-click="$ctrl.showModal()")
@@ -23,6 +23,5 @@ div.document.presentation.text-center(ng-style="$ctrl.marginStyle")
 			ppt-display(ng-show="$ctrl.state.display=='ppt'", slides="$ctrl.sources.ppt")
 			gif-display(ng-show="$ctrl.state.display=='gif'", path="$ctrl.sources.gif")
 			pdf-display(ng-show="$ctrl.state.display=='pdf'", slides="$ctrl.sources.pdf")
-			button.btn.btn-danger(ng-show="$ctrl.state.display=='ppt'||$ctrl.state.display=='gif'||$ctrl.state.display=='pdf'", ng-click="$ctrl.deleteFile()")
-				i.fa.fa-trash
-				| Delete
+			button.btn.btn-danger.delete-file(ng-show="$ctrl.state.display=='ppt'||$ctrl.state.display=='gif'||$ctrl.state.display=='pdf'", ng-click="$ctrl.deleteFile()")
+				i.fa.fa-remove

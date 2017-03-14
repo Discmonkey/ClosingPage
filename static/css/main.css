@@ -159,6 +159,10 @@ nav {
     display: inline-block;
     height: 30px;
     margin-top: 5px; }
+.preview button.delete-file {
+  position: absolute;
+  top: 0;
+  right: 0; }
 
 .contact-icon {
   background: url(/static/img/phase-one/CTA.svg) transparent no-repeat;

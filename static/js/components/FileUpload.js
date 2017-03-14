@@ -10,8 +10,6 @@ var FileUpload = {
         var self = this;
         self.state.display = 'default';
         self.state.name = '';
-        self.backgroundStyle = {};
-        self.marginStyle = {};
         this.showModal = function() {
             self.state.display = 'form';
         };
@@ -41,8 +39,6 @@ var FileUpload = {
                 self.state.display = data.display;
                 self.state.name = data.name;
                 self.sources[data.display] = data.source;
-                self.backgroundStyle = {'background-color': 'white'};
-                self.marginStyle = {'margin-bottom': '2.5em'};
             },function(data) {
                 console.log(data);
             });
@@ -58,8 +54,6 @@ var FileUpload = {
                 self.sources.gif = '//:0';
                 self.sources.ppt = [];
                 self.sources.pdf = [];
-                self.backgroundStyle = {};
-                self.marginStyle = {};
             },function (data){
                 console.log('Error:');
                 console.log(data);
